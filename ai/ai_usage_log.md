@@ -83,4 +83,4 @@ it, each of which is listed line by line.
 - **Still open**: `LICENSE`, `CITATION.cff`, and `.zenodo.json` are not yet written, and the README
   carries bracketed placeholders for the license, the use terms, and the Zenodo DOI. These need
   NAF's decisions before they can be filled in.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 5c95758
