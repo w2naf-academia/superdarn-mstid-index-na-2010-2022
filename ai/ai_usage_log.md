@@ -178,4 +178,4 @@ it, each of which is listed line by line.
 - **Still open**: the same correction has no counterpart in `overleaf/main.tex` yet, because that
   file's older acknowledgment lists no award at all for Wallops Island. Updating the manuscript's
   statement remains reported and unacted on, pending NAF.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 0ff5a21
