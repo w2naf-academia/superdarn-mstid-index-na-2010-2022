@@ -156,4 +156,4 @@ it, each of which is listed line by line.
   than the two named radars). `MSTID-Climatology-Paper-2026/README.md` line 296 carries only a
   one-line thanks to the SuperDARN community. Both were reported to NAF rather than edited, since
   the manuscript's Acknowledgments are flagged in its own draft note as pending the author list.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 1787ff6
