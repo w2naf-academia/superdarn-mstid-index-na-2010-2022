@@ -119,3 +119,41 @@ it, each of which is listed line by line.
   pushing a version tag, which is irreversible and needs NAF's explicit authorization at the time
   (R3).
 - **Git Hash**: 4b1227d
+
+## [2026-08-31 21:05 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
+- **Session Purpose**: NAF asked whether the required SuperDARN data acknowledgment from
+  <https://vt.superdarn.org/data-acknowledgement> had been included, and whether any radars were
+  missed. It had not been. Add it.
+- **Sections/Files Affected**: `README.md`: new `## Required acknowledgment` section, a table-of-
+  contents entry, and the Rules of the road sentence updated to name the acknowledgment as a
+  condition of use alongside attribution.
+- **Nature of Contribution**: Correction of an omission in the previous session's README.
+- **Human Review Status**: Pending review. NAF supplied the statement text and identified the gap.
+- **What was wrong**: the previous session's README carried a two-sentence paraphrase naming the
+  ten funding countries and linking the data policy. It dropped every per-radar operator and award
+  clause, which is the substantive part of the requirement.
+- **Verification**:
+  - The block in the README is **character-for-character identical** to the statement NAF supplied,
+    checked programmatically after whitespace normalization for the Markdown blockquote wrapping.
+  - **All ten radars in the bundle are covered by the statement**, checked by matching each radar's
+    full name against the text: Prince George, Saskatoon, Kapuskasing, Goose Bay, Christmas Valley
+    West, Christmas Valley East, Fort Hays West, Fort Hays East, Blackstone, Wallops Island. None
+    missing, and the statement names no radar absent from the dataset.
+  - **`AGU-2426201` for Wallops Island was left exactly as supplied and not corrected.** It is
+    likely a typo for `AGS-`: the two sibling awards in the same statement are `AGS-2426199` and
+    `AGS-2426200`, and NSF Geosciences awards carry the `AGS` prefix. Silently altering a required
+    verbatim statement is the wrong call, so it stands and is flagged to NAF to confirm with
+    Virginia Tech. The README tells the reader the generator is the authority and to re-check it
+    before submitting.
+  - The generator page could not be fetched for independent confirmation: it builds the statement
+    client-side, so the text is absent from the served HTML.
+- **Related finding, not acted on**: `overleaf/main.tex` line 363 carries an **older version of
+  this same statement**, with superseded operators and award numbers (Virginia Tech `AGS-1935110`,
+  Dartmouth `AGS-1341925`, Saskatoon and Prince George attributed to "the University of
+  Saskatchewan" rather than SuperDARN Canada, no award for Wallops Island, and "Fort Hays" rather
+  than the two named radars). `MSTID-Climatology-Paper-2026/README.md` line 296 carries only a
+  one-line thanks to the SuperDARN community. Both were reported to NAF rather than edited, since
+  the manuscript's Acknowledgments are flagged in its own draft note as pending the author list.
+- **Git Hash**: [to be added after commit]

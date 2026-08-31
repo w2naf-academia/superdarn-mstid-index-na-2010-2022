@@ -18,6 +18,7 @@ University of Scranton, <nathaniel.frissell@scranton.edu>
 ## Contents
 
 - [Citation](#citation)
+- [Required acknowledgment](#required-acknowledgment)
 - [Rules of the road](#rules-of-the-road)
 - [Quick start](#quick-start)
 - [What the SuperDARN MSTID index is](#what-the-superdarn-mstid-index-is)
@@ -56,15 +57,33 @@ Please also cite the software that produced the index:
 > `DARNtids`: SuperDARN TID Analysis Toolkit. <https://github.com/w2naf-academia/DARNtids>
 > [version and DOI to be assigned]
 
-SuperDARN is a collection of radars funded by the national scientific funding agencies of
-Australia, Canada, China, France, Italy, Japan, Norway, South Africa, the United Kingdom, and the
-United States of America. Users of SuperDARN data should follow the
+## Required acknowledgment
+
+Any publication using this dataset must carry the following statement, which covers all ten radars
+in the bundle. It is reproduced verbatim from the
+[SuperDARN acknowledgment generator](https://vt.superdarn.org/data-acknowledgement), and the
+generator is the authority: check it before submitting, because operators and award numbers change.
+
+> The authors acknowledge the use of SuperDARN data. SuperDARN is a collection of radars funded by
+> national scientific funding agencies of Australia, Canada, China, France, Italy, Japan, Norway,
+> South Africa, United Kingdom, and the United States of America. The Blackstone, Fort Hays East,
+> Fort Hays West, Goose Bay, and Kapuskasing radars are maintained and operated by Virginia Tech
+> with support from NSF under AGS-2426200. The Christmas Valley East and Christmas Valley West
+> radars are maintained and operated by Dartmouth College with support from NSF under AGS-2426199.
+> The Prince George and Saskatoon radars are maintained and operated by SuperDARN Canada. SuperDARN
+> Canada operations are supported by funding from the Canada Foundation for Innovation (CFI), the
+> Canadian Space Agency's (CSA) Geospace Observatory (GO) Canada program, and Innovation
+> Saskatchewan. The Wallops Island radar is maintained and operated by JHU Applied Physics
+> Laboratory with support from NSF under AGU-2426201.
+
+Use of SuperDARN data is also subject to the
 [SuperDARN data policy](https://superdarn.ca/data-policy).
 
 ## Rules of the road
 
-The data are open under CC BY 4.0 and the software under GPL-3.0, so the only condition on use is
-attribution: cite the dataset and the paper that defines the index, as above.
+The data are open under CC BY 4.0 and the software under GPL-3.0, so the conditions on use are
+attribution and the SuperDARN acknowledgment: cite the dataset and the paper that defines the
+index, and carry the statement above.
 
 Beyond that, a courtesy. If you are building a study on this index, we would like to hear what you
 are working on. The reason is practical rather than proprietary: the index has real limitations
