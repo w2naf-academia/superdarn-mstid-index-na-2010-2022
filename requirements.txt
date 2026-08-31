@@ -1,8 +1,13 @@
-colorcet
-matplotlib
-numpy
-pandas
-scipy
-tqdm
-netCDF4
-xarray
+# Verified with Python 3.13.11 on 2026-08-31; these are the versions the committed
+# output/ was reproduced against.
+#
+# The lower bound on matplotlib is a hard requirement: this script uses the
+# mpl.colormaps API, which replaced mpl.cm.get_cmap (removed in matplotlib 3.11).
+colorcet>=3.1.0
+matplotlib>=3.10.8
+netCDF4>=1.7.4
+numpy>=2.2.6
+pandas>=2.3.3
+scipy>=1.14.1
+tqdm>=4.67.1
+xarray>=2025.12.0
