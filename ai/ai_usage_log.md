@@ -118,4 +118,4 @@ it, each of which is listed line by line.
   two places (W13) until the record exists. Minting it means enabling the Zenodo webhook and
   pushing a version tag, which is irreversible and needs NAF's explicit authorization at the time
   (R3).
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 4b1227d
