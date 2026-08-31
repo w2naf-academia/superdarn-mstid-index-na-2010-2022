@@ -41,7 +41,9 @@ University of Scranton, <nathaniel.frissell@scranton.edu>
 If you use this dataset or code, please cite both the dataset and the paper that defines the index:
 
 > Frissell, N. A. (2026). *SuperDARN MSTID Index, North American sector, 2010--2022* [Data set].
-> Zenodo. [DOI to be assigned]
+> Zenodo. [DOI to be assigned at release]
+
+Machine-readable metadata is in [`CITATION.cff`](CITATION.cff), which GitHub and Zenodo both read.
 
 > Frissell, N. A., Baker, J. B. H., Ruohoniemi, J. M., Greenwald, R. A., Gerrard, A. J.,
 > Miller, E. S., & West, M. L. (2016). Sources and characteristics of medium-scale traveling
@@ -61,8 +63,14 @@ United States of America. Users of SuperDARN data should follow the
 
 ## Rules of the road
 
-[Placeholder: license and use terms to be finalized before the Zenodo release. Until then, please
-contact Nathaniel Frissell at nathaniel.frissell@scranton.edu before using this code or data.]
+The data are open under CC BY 4.0 and the software under GPL-3.0, so the only condition on use is
+attribution: cite the dataset and the paper that defines the index, as above.
+
+Beyond that, a courtesy. If you are building a study on this index, we would like to hear what you
+are working on. The reason is practical rather than proprietary: the index has real limitations
+(see [Known limitations](#known-limitations)), the record is being extended and reprocessed, and a
+short exchange can save you from an analysis the data will not support. Write to
+<nathaniel.frissell@scranton.edu>. This is an invitation, and nothing in the license depends on it.
 
 ## Quick start
 
@@ -424,7 +432,23 @@ reproduces the committed `output/` to floating-point round-off, with the figures
 
 ## License
 
-[Placeholder: license to be assigned before the Zenodo release.]
+This repository carries two licenses, one for the data and one for the software.
+
+| What | License | File |
+|---|---|---|
+| `data/` and `output/` | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | [`LICENSE-DATA`](LICENSE-DATA) |
+| `superdarn_mstid_plot.py` | [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html) | [`LICENSE`](LICENSE) |
+
+Copyright (c) 2023--2026 Nathaniel A. Frissell.
+
+CC BY 4.0 matches the terms under which the SuperDARN MSTID index is released alongside the paper
+in preparation. GPL-3.0 matches
+[`DARNtids`](https://github.com/w2naf-academia/DARNtids),
+[`pyDARNmusic`](https://github.com/w2naf-academia/pyDARNmusic), and the analysis package for that
+paper.
+
+These licenses cover the derived index computed here. The underlying SuperDARN FITACF observations
+remain subject to the [SuperDARN data policy](https://superdarn.ca/data-policy).
 
 ## Contact
 

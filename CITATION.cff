@@ -1,0 +1,62 @@
+cff-version: 1.2.0
+title: "SuperDARN MSTID Index, North American sector, 2010-2022"
+message: "If you use this dataset or software, please cite both this record and Frissell et al. (2016), which defines the index."
+type: dataset
+authors:
+  - family-names: Frissell
+    given-names: Nathaniel A.
+    orcid: "https://orcid.org/0000-0002-8398-4222"
+    affiliation: "Department of Physics and Engineering, The University of Scranton, Scranton, PA, USA"
+    email: nathaniel.frissell@scranton.edu
+abstract: >-
+  Twelve Northern Hemisphere winters (2010-2011 through 2021-2022) of the
+  SuperDARN Medium-Scale Traveling Ionospheric Disturbance (MSTID) index,
+  computed for ten North American SuperDARN radars at four 2 h daytime
+  observational windows per day, together with the script that produces
+  climatology and stack plots from it. The index quantifies MSTID-band
+  (approximately 14 to 56 min period) fluctuation in a radar's ground-scatter
+  field, expressed as a departure from that radar's own seasonal-mean spectrum
+  and normalized by the number of contributing ground-scatter cells. It was
+  defined by Frissell et al. (2016) and is computed here by the DARNtids
+  SuperDARN TID Analysis Toolkit.
+keywords:
+  - MSTID
+  - traveling ionospheric disturbance
+  - SuperDARN
+  - atmospheric gravity waves
+  - polar vortex
+  - ionosphere
+  - HF radar
+license: CC-BY-4.0
+repository-code: "https://github.com/w2naf-academia/mstid_index"
+references:
+  - type: article
+    title: "Sources and characteristics of medium-scale traveling ionospheric disturbances observed by high-frequency radars in the North American sector"
+    authors:
+      - family-names: Frissell
+        given-names: Nathaniel A.
+      - family-names: Baker
+        given-names: Joseph B. H.
+      - family-names: Ruohoniemi
+        given-names: J. Michael
+      - family-names: Greenwald
+        given-names: Raymond A.
+      - family-names: Gerrard
+        given-names: Andrew J.
+      - family-names: Miller
+        given-names: Ethan S.
+      - family-names: West
+        given-names: Mary Lou
+    journal: "Journal of Geophysical Research: Space Physics"
+    volume: 121
+    issue: 4
+    start: 3722
+    end: 3739
+    year: 2016
+    doi: "10.1002/2015JA022168"
+  - type: software
+    title: "DARNtids: SuperDARN TID Analysis Toolkit"
+    authors:
+      - family-names: Frissell
+        given-names: Nathaniel A.
+    repository-code: "https://github.com/w2naf-academia/DARNtids"

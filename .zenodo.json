@@ -1,0 +1,50 @@
+{
+    "title": "SuperDARN MSTID Index, North American sector, 2010-2022",
+    "upload_type": "dataset",
+    "description": "<p>Twelve Northern Hemisphere winters (2010&ndash;2011 through 2021&ndash;2022) of the SuperDARN Medium-Scale Traveling Ionospheric Disturbance (MSTID) index, computed for ten North American SuperDARN radars at four 2 h daytime observational windows per day (14, 16, 18, and 20 UTC), together with the script that produces climatology and stack plots from it.</p><p>The index quantifies MSTID-band (approximately 14 to 56 min period) fluctuation in a radar's ground-scatter field within an observational window, expressed as a departure from that radar's own seasonal-mean spectrum and normalized by the number of contributing ground-scatter cells. It is therefore a measure of activity relative to each radar's own winter background. It was defined by Frissell et al. (2016, doi:10.1002/2015JA022168) and is computed here by the DARNtids SuperDARN TID Analysis Toolkit.</p><p>Radars: Prince George, Saskatoon, Kapuskasing, Goose Bay (high latitude); Christmas Valley West and East, Fort Hays West and East, Blackstone, Wallops Island (midlatitude). Data are provided as 120 netCDF and 120 CSV files, one per radar per season, with per-window quality-control flags and, where available, MUSIC-derived wave parameters.</p><p>See README.md for a description of how the index is derived, a full data dictionary, and known limitations.</p><p>The data are licensed CC-BY-4.0; the plotting software is licensed GPL-3.0. The underlying SuperDARN FITACF observations remain subject to the SuperDARN data policy (https://superdarn.ca/data-policy).</p>",
+    "creators": [
+        {
+            "name": "Frissell, Nathaniel A.",
+            "affiliation": "Department of Physics and Engineering, The University of Scranton, Scranton, PA, USA",
+            "orcid": "0000-0002-8398-4222"
+        }
+    ],
+    "license": "cc-by-4.0",
+    "access_right": "open",
+    "keywords": [
+        "MSTID",
+        "traveling ionospheric disturbance",
+        "SuperDARN",
+        "atmospheric gravity waves",
+        "polar vortex",
+        "ionosphere",
+        "HF radar",
+        "space weather"
+    ],
+    "language": "eng",
+    "related_identifiers": [
+        {
+            "identifier": "10.1002/2015JA022168",
+            "relation": "isDerivedFrom",
+            "resource_type": "publication-article",
+            "scheme": "doi"
+        },
+        {
+            "identifier": "https://github.com/w2naf-academia/DARNtids",
+            "relation": "isCompiledBy",
+            "resource_type": "software",
+            "scheme": "url"
+        },
+        {
+            "identifier": "https://github.com/w2naf-academia/pyDARNmusic",
+            "relation": "isCompiledBy",
+            "resource_type": "software",
+            "scheme": "url"
+        }
+    ],
+    "grants": [
+        {"id": "10.13039/100000104::80NSSC23K0848"},
+        {"id": "10.13039/100000104::80NSSC21K1772"},
+        {"id": "10.13039/100000001::AGS-2045755"}
+    ]
+}

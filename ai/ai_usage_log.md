@@ -84,3 +84,38 @@ it, each of which is listed line by line.
   carries bracketed placeholders for the license, the use terms, and the Zenodo DOI. These need
   NAF's decisions before they can be filled in.
 - **Git Hash**: 5c95758
+
+## [2026-08-31 20:52 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
+- **Session Purpose**: Same session as the entry above, continued after NAF answered the three
+  open release questions.
+- **NAF's decisions** (all three, his recommended-option choices, 2026-08-31):
+  1. **License**: GPL-3.0 for the code, CC-BY-4.0 for the data.
+  2. **Use terms**: attribution as the only condition, plus a courtesy notice that carries no
+     obligation. This retires the previous "contact NAF before using this code or data" line.
+  3. **Zenodo authorship**: N. A. Frissell alone. The `DARNtids` and `pyDARNmusic` lineage is
+     credited by citing that software, which the README and `CITATION.cff` both do.
+- **Sections/Files Affected**: `LICENSE` (new, GPL-3.0), `LICENSE-DATA` (new, CC-BY-4.0),
+  `CITATION.cff` (new), `.zenodo.json` (new), `README.md` (the Rules of the road, Citation, and
+  License sections; all license placeholders resolved).
+- **Nature of Contribution**: Drafting of release metadata, to NAF's stated decisions.
+- **Human Review Status**: Pending review. NAF made the three decisions; he has not read the
+  resulting files.
+- **Verification**:
+  - `LICENSE` is a byte-identical copy of the GPL-3.0 text already in
+    `MSTID-Climatology-Paper-2026` and `DARNtids` (md5 `1ebbd3e34237af26da5dc08a4e440464` in all
+    three), rather than a transcription from memory.
+  - `LICENSE-DATA` **references** the canonical CC-BY-4.0 legal code at creativecommons.org rather
+    than reproducing it. Reproducing a license text from memory risks a subtly wrong legal
+    instrument (W12), and a reference cannot drift from the canonical version.
+  - `.zenodo.json` parses as JSON; `CITATION.cff` parses as YAML with `cff-version: 1.2.0`.
+  - NAF's ORCID `0000-0002-8398-4222` was taken from the author block of `overleaf/main.tex`, and
+    his affiliation from `\affiliation{1}` there.
+  - The three grant identifiers in `.zenodo.json` are the ones named in the project's governance
+    file: NASA 80NSSC23K0848, NASA 80NSSC21K1772, NSF AGS-2045755.
+- **Still open**: the Zenodo DOI itself. The README carries `[DOI to be assigned at release]` in
+  two places (W13) until the record exists. Minting it means enabling the Zenodo webhook and
+  pushing a version tag, which is irreversible and needs NAF's explicit authorization at the time
+  (R3).
+- **Git Hash**: [to be added after commit]

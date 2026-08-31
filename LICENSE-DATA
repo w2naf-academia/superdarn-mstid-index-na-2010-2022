@@ -1,0 +1,39 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+==========================================================
+
+The data in this repository are licensed under the Creative Commons Attribution
+4.0 International License.
+
+    Copyright (c) 2023-2026 Nathaniel A. Frissell
+
+Covered by this license:
+
+    data/     The SuperDARN MSTID index, 2010-2022 (netCDF and CSV)
+    output/   Derived per-season tables and figures
+
+The software in this repository (superdarn_mstid_plot.py) is licensed separately
+under the GNU General Public License v3.0. See LICENSE.
+
+Full license text
+-----------------
+
+Human-readable summary:  https://creativecommons.org/licenses/by/4.0/
+Legal code:              https://creativecommons.org/licenses/by/4.0/legalcode
+
+The canonical legal code at the URL above governs. It is referenced rather than
+reproduced here so that this file cannot drift from it.
+
+Attribution
+-----------
+
+To satisfy the attribution requirement, cite the dataset and the paper that
+defines the index. See the "Citation" section of README.md for the full entries.
+
+Note on the underlying observations
+-----------------------------------
+
+This license covers the derived MSTID index computed here. It does not extend to
+the SuperDARN FITACF observations the index was computed from, which remain
+subject to the SuperDARN data policy:
+
+    https://superdarn.ca/data-policy
