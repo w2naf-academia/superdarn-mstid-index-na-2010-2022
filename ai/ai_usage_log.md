@@ -157,3 +157,25 @@ it, each of which is listed line by line.
   one-line thanks to the SuperDARN community. Both were reported to NAF rather than edited, since
   the manuscript's Acknowledgments are flagged in its own draft note as pending the author list.
 - **Git Hash**: 1787ff6
+
+## [2026-08-31 21:14 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
+- **Session Purpose**: Resolve the `AGU-2426201` question raised in the entry above.
+- **NAF's decision** (2026-08-31), verbatim: *"Yes, it should be AGS-2426201"*. NAF is a SuperDARN
+  co-investigator and is authoritative on this; the assistant had flagged the prefix as a probable
+  typo and declined to change it unilaterally.
+- **Sections/Files Affected**: `README.md`, the Wallops Island clause of the required
+  acknowledgment (`AGU-2426201` to `AGS-2426201`) and the paragraph introducing the block.
+- **Nature of Contribution**: Applying a correction NAF authorized.
+- **Human Review Status**: Reviewed. NAF made the call on this specific identifier.
+- **Verification**: The introductory paragraph no longer claims the block is verbatim generator
+  output. It now states plainly that the generator prints `AGU-2426201`, that the correct identifier
+  is `AGS-2426201`, and that this is the one place the block departs from the generator. A reader
+  who diffs our statement against the generator's output will find the difference already
+  explained rather than looking like an error on our part. The remaining text is unchanged and
+  still matches the generator character for character.
+- **Still open**: the same correction has no counterpart in `overleaf/main.tex` yet, because that
+  file's older acknowledgment lists no award at all for Wallops Island. Updating the manuscript's
+  statement remains reported and unacted on, pending NAF.
+- **Git Hash**: [to be added after commit]
