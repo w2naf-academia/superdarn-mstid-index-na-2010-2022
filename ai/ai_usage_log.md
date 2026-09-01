@@ -180,7 +180,7 @@ it, each of which is listed line by line.
   statement remains reported and unacted on, pending NAF.
 - **Git Hash**: 0ff5a21
 
-## [2026-09-01 01:40 UTC]
+## [2026-09-01 14:49 UTC]
 
 - **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
 - **Session Purpose**: Audit the data dictionary against the actual data files before the release,
@@ -209,4 +209,4 @@ it, each of which is listed line by line.
   where there are eleven, having transcribed from an `ncdump` excerpt rather than from
   `xarray.open_dataset(...).attrs`. Both numbers in the committed text were then re-verified
   programmatically against a data file.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: c8411c5
