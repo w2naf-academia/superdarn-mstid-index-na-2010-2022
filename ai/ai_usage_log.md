@@ -478,4 +478,4 @@ it, each of which is listed line by line.
   entries are article numbers Crossref does not put in its page field. The script therefore verifies
   a DOI's **identity** and leaves citation style to a human. This is stated in the module docstring
   so a later reader does not "fix" the table into disagreeing with the registry.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 94af2d7
