@@ -532,3 +532,36 @@ it, each of which is listed line by line.
   - `README.md` was checked and never advertised any of the removed capability, so no documentation
     change was needed.
 - **Git Hash**: f25ffde
+
+## [2026-09-01 16:05 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5`, via Claude Code
+- **Session Purpose**: Remove the explanatory sentence from the Required acknowledgment section, at
+  NAF's instruction.
+- **NAF's instruction** (2026-09-01), verbatim: *"Delete this statement, because the acknowledgments
+  will at least be frozen for this release"*, quoting the sentence beginning "It is the output of the
+  SuperDARN acknowledgment generator with one typo corrected".
+- **Sections/Files Affected**: `README.md`, the Required acknowledgment section. The lead-in is now
+  two lines: the statement must be carried, and it covers all ten radars in the bundle. The
+  acknowledgment text itself is unchanged.
+- **What was deleted**: the attribution of the block to the SuperDARN acknowledgment generator, the
+  explanation that `AGU-2426201` is what the generator prints and `AGS-2426201` is correct, and the
+  instruction to re-check the generator before submitting.
+- **NAF's reasoning, and why it holds**: the acknowledgment is frozen for this release. A dataset
+  release is a fixed artifact, so telling its reader that the statement may drift and to go check
+  upstream is advice that belongs to the person writing a paper, not to the record of what this
+  release contains. The forward-looking instruction was the assistant's addition, not a
+  requirement.
+- **The information is not lost.** The assistant had added that sentence so a reader diffing our
+  block against the generator's current output would find the difference already explained. NAF, who
+  is a SuperDARN co-investigator and had already ruled on the identifier, has decided that
+  explanation does not belong in the release. The full record of the correction stays in this log,
+  two entries above and in the [2026-08-31 21:14 UTC] entry: the generator prints `AGU-2426201`, the
+  correct identifier is `AGS-2426201`, and NAF confirmed it. Anyone who needs to know why the two
+  differ can find it here, which is what an audit log is for.
+- **Nature of Contribution**: Deletion, to NAF's stated decision.
+- **Human Review Status**: NAF made the decision.
+- **Verification**: `AGS-2426201` remains correct inside the acknowledgment block; no `AGU-` string
+  survives anywhere in `README.md`; the block still covers all ten radars; and
+  `tools/check_references.py --offline` still passes, confirming the edit did not disturb a DOI.
+- **Git Hash**: [to be added after commit]

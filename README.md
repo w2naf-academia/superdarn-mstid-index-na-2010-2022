@@ -61,11 +61,7 @@ Please also cite the software that produced the index:
 ## Required acknowledgment
 
 Any publication using this dataset must carry the following statement, which covers all ten radars
-in the bundle. It is the output of the
-[SuperDARN acknowledgment generator](https://vt.superdarn.org/data-acknowledgement) with one typo
-corrected: the generator prints `AGU-2426201` for the Wallops Island award, and the correct
-identifier is `AGS-2426201`. Check the generator before submitting, because operators and award
-numbers change.
+in the bundle.
 
 > The authors acknowledge the use of SuperDARN data. SuperDARN is a collection of radars funded by
 > national scientific funding agencies of Australia, Canada, China, France, Italy, Japan, Norway,
