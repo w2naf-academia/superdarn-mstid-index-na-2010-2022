@@ -177,10 +177,10 @@ is as follows.
 1. **Despeckle.** Raw FITACF ground-scatter power is passed through a boxcar median filter, which
    replaces each range-beam cell by the median of its neighbors within a 3 x 3 x 3
    (time x beam x range) window. A cell is kept only when at least 40% of that neighborhood contains
-   valid scatter ([Ribeiro et al., 2011](https://doi.org/10.1029/2011JA016933);
+   valid scatter ([Ribeiro et al., 2011](https://doi.org/10.1029/2011RS004676);
    [Ruohoniemi & Baker, 1998](https://doi.org/10.1029/98JA01288)). This step also recomputes the
    ground- versus ionospheric-scatter flag, applying the criterion of
-   [Blanchard et al. (2009)](https://doi.org/10.1029/2008JA013980) in the linearized form used by
+   [Blanchard et al. (2009)](https://doi.org/10.1029/2009RS004141) in the linearized form used by
    standard SuperDARN processing.
 
 2. **Define the windows.** Four 2 h windows are defined per radar per day, beginning at 14, 16, 18,
@@ -442,7 +442,7 @@ reproduces the committed `output/` to floating-point round-off, with the figures
 
 - Blanchard, G. T., Sundeen, S., & Baker, K. B. (2009). Probabilistic identification of
   high-frequency radar backscatter from the ground and ionosphere based on spectral characteristics.
-  *Journal of Geophysical Research*, 114, A12231. <https://doi.org/10.1029/2008JA013980>
+  *Radio Science*, 44(5), RS5012. <https://doi.org/10.1029/2009RS004141>
 - Bristow, W. A., Greenwald, R. A., & Samson, J. C. (1994). Identification of high-latitude acoustic
   gravity wave sources using the Goose Bay HF radar. *Journal of Geophysical Research*, 99(A1),
   319--331. <https://doi.org/10.1029/93JA01470>
@@ -458,8 +458,8 @@ reproduces the committed `output/` to floating-point round-off, with the figures
   Radar Network (SuperDARN) HF radars. *Progress in Earth and Planetary Science*, 6, 27.
   <https://doi.org/10.1186/s40645-019-0270-5>
 - Ribeiro, A. J., et al. (2011). A new approach for identifying ionospheric backscatter in
-  midlatitude SuperDARN HF radar observations. *Journal of Geophysical Research*, 116, A10323.
-  <https://doi.org/10.1029/2011JA016933>
+  midlatitude SuperDARN HF radar observations. *Radio Science*, 46(4), RS4011.
+  <https://doi.org/10.1029/2011RS004676>
 - Ruohoniemi, J. M., & Baker, K. B. (1998). Large-scale imaging of high-latitude convection with Super
   Dual Auroral Radar Network HF radar observations. *Journal of Geophysical Research*, 103(A9),
   20797--20811. <https://doi.org/10.1029/98JA01288>

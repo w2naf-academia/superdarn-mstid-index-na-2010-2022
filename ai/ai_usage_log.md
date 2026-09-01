@@ -229,3 +229,45 @@ it, each of which is listed line by line.
   and `ai/`. The one remaining hit, `mongo_to_csv.py` in the README provenance section, is already
   public: it is named in the comment header of all 120 CSV files in `data/`.
 - **Git Hash**: 87a8862
+
+## [2026-09-01 15:07 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
+- **Session Purpose**: NAF found that the first reference in the README carried a DOI resolving to a
+  different paper, and instructed a careful check of all of them.
+- **Sections/Files Affected**: `README.md`, four locations: two inline citations in the "How the
+  index is derived" step 1, and two entries in the References list.
+- **Nature of Contribution**: Correction of fabricated citation metadata produced by an earlier
+  entry in this same log.
+- **Human Review Status**: NAF identified the error. The corrections are pending his review.
+- **What was wrong, and why**: the References section was written from the assistant's own
+  recollection of these papers rather than from `references.bib`, the project's curated
+  bibliography, which was available and correct the whole time. Two entries were wrong in journal,
+  volume, article number, **and** DOI:
+
+  | | As published in the README | Correct |
+  |---|---|---|
+  | Blanchard, Sundeen & Baker (2009) | *J. Geophys. Res.*, 114, A12231, `10.1029/2008JA013980` | *Radio Science*, 44(5), RS5012, `10.1029/2009RS004141` |
+  | Ribeiro et al. (2011) | *J. Geophys. Res.*, 116, A10323, `10.1029/2011JA016933` | *Radio Science*, 46(4), RS4011, `10.1029/2011RS004676` |
+
+  Both wrong DOIs resolve to real but unrelated papers: `10.1029/2008JA013980` is Sitnov, Swisdak
+  & Divin (2009), "Dipolarization fronts as a signature of transient reconnection in the
+  magnetotail", and `10.1029/2011JA016933` is Clilverd et al. (**2012**), a THEMIS substorm
+  precipitation study. A reader following either link would have been sent to the wrong science
+  with no indication of an error. This is a W12 violation: citation metadata was asserted without
+  being traced to a source.
+- **Verification of the whole reference list**: every DOI in `README.md`, `CITATION.cff`,
+  `.zenodo.json`, and `LICENSE-DATA` was extracted programmatically and resolved against the
+  **Crossref REST API**, comparing first author, year, journal, volume, and issue against what the
+  README asserts. **All eight article DOIs now agree with the registry.** Page ranges were checked
+  separately for the five entries Crossref supplies them for (Bristow 319--331, Chisham 33--109,
+  Frissell 3722--3739, Greenwald 761--796, Ruohoniemi 20797--20811), all matching. Three entries are
+  article-number citations for which Crossref reports no page range (Blanchard RS5012, Ribeiro
+  RS4011, Nishitani 27); those values come from `references.bib`. The two Crossref Funder Registry
+  identifiers in `.zenodo.json` were also resolved: `10.13039/100000104` is NASA and
+  `10.13039/100000001` is NSF.
+- **Scope of the error**: a grep across the whole project confirms the two bad DOIs appeared
+  **only** in this README, in the four places now fixed. `references.bib` and the manuscript were
+  always correct, and the manuscript renders its citations from the bibliography rather than by
+  hand, so nothing else was affected.
+- **Git Hash**: [to be added after commit]
