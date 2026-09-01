@@ -342,3 +342,41 @@ it, each of which is listed line by line.
   - `git remote get-url origin` now returns the new URL, and a fetch against it succeeds with
     `origin/main` matching local `HEAD`.
 - **Git Hash**: e9ea304
+
+## [2026-09-01 15:38 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5`, via Claude Code
+- **Session Purpose**: NAF: *"There needs to be an appropriate Claude acknowledgment in the
+  README.md."* Write the AI disclosure for this public data release.
+- **Sections/Files Affected**: `README.md`, a new `## AI assistance` section placed before the
+  License section, with a table-of-contents entry; `.zenodo.json`, a closing paragraph appended to
+  the record description.
+- **Nature of Contribution**: Drafting a disclosure of the assistant's own contribution.
+- **Human Review Status**: **Pending NAF's sign-off, and that sign-off is required.** Per A2 the
+  disclosure wording is drafted by the assistant and must be reviewed and adopted by the author
+  before release. Treat the current text as a draft until he says otherwise.
+- **What the disclosure says**: it leads with what AI did **not** touch, because that is the reader's
+  first question about an AI-assisted data repository: the index values in `data/` were computed by
+  `DARNtids` and exported in October 2023, before any AI involvement; no AI tool has computed,
+  recomputed, or altered them; `output/` was not regenerated with one; and
+  `superdarn_mstid_plot.py` was written by NAF. It then lists the five things the tool was used for
+  (README drafting, release metadata, the seven forward-compatibility script edits, the
+  `requirements.txt` floors, and the verification work), states that NAF set the objectives, made
+  every scientific and licensing decision, and is responsible for the content, and states that an AI
+  tool is not and cannot be an author (A3).
+- **Why the Crossref check is named in the disclosure**: a reader of an AI-assisted README has good
+  reason to worry about invented citations, so the disclosure says plainly that every DOI in the
+  repository was resolved against the Crossref API and compared on author, year, journal, volume, and
+  issue. That is a fact a data user can act on.
+- **The disclosure points at this log**, which is public in this repository, and says it records the
+  errors the tool made and how they were caught. That is deliberate: a disclosure that only lists
+  successes is not a disclosure.
+- **A judgment call for NAF to overrule if he wants**: the README does **not** name the specific
+  fabricated-citation incident (the two wrong DOIs in the Blanchard and Ribeiro entries, which NAF
+  caught). A2 says a disclosure should meet the requirement, be direct, and stop, and the detail
+  lives one click away in this log. If NAF would rather the README name it explicitly, that is a
+  two-sentence change.
+- **`.zenodo.json`**: the same disclosure in one paragraph, because the Zenodo record is the citable
+  deliverable and A2's requirement attaches to the deliverable rather than only to the source
+  repository. Validated as JSON after editing.
+- **Git Hash**: [to be added after commit]
