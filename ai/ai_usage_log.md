@@ -413,3 +413,25 @@ it, each of which is listed line by line.
 - **Human Review Status**: NAF made both decisions. The revised wording is pending his sign-off,
   which A2 still requires before release.
 - **Git Hash**: a11af0e
+
+## [2026-09-01 15:52 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5`, via Claude Code
+- **Session Purpose**: Record NAF's adoption of the AI disclosure wording, which A2 requires before
+  release, and push.
+- **NAF's sign-off** (2026-09-01), verbatim, quoting back the two sentences that had been flagged for
+  his decision (the statement that the scientific content of the documentation is the author's, and
+  the pointer to this log as a record of the tool's errors): *"Yes, I like this wording. Push"*
+- **Effect**: the AI assistance section of `README.md` and the corresponding paragraph in
+  `.zenodo.json` are **adopted**, not draft. The earlier entries in this log that marked the wording
+  "pending NAF's sign-off" are superseded on that point. Both flagged sentences stay as written.
+- **Sections/Files Affected**: this log only. No change to the disclosure text, which is what he
+  approved.
+- **Nature of Contribution**: Record of an author decision.
+- **Human Review Status**: **Reviewed and adopted by the author.** This satisfies A2's requirement
+  that the disclosure wording be reviewed and adopted before release.
+- **Note for a later session**: do not redraft this section on stylistic grounds. It was written,
+  revised once at NAF's instruction to name the documentation use explicitly, and then adopted
+  verbatim. Changes to the **scope** of AI assistance in this repository must still be reflected
+  here, because A2 requires the disclosure to stay accurate as scope changes.
+- **Git Hash**: [to be added after commit]
