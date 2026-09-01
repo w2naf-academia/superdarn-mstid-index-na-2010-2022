@@ -272,7 +272,7 @@ it, each of which is listed line by line.
   hand, so nothing else was affected.
 - **Git Hash**: 925a625
 
-## [2026-09-01 15:22 UTC]
+## [2026-09-01 15:16 UTC]
 
 - **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
 - **Session Purpose**: State the season window explicitly, following NAF's decision that this bundle
@@ -310,4 +310,4 @@ it, each of which is listed line by line.
   README states the mechanism, which is certain from the source code, and says a differently
   windowed product is a different set of numbers. The measurements are recorded here and in the
   project's private log.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 65a9a32
