@@ -434,4 +434,4 @@ it, each of which is listed line by line.
   revised once at NAF's instruction to name the documentation use explicitly, and then adopted
   verbatim. Changes to the **scope** of AI assistance in this repository must still be reflected
   here, because A2 requires the disclosure to stay accurate as scope changes.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 00d2c93
