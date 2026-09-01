@@ -494,19 +494,23 @@ index values in `data/` were computed by
 No AI tool has computed, recomputed, or altered them, and `output/` was not regenerated with one.
 `superdarn_mstid_plot.py` was written by N. A. Frissell.
 
-Claude (Anthropic), model `claude-opus-5`, was used under the author's direction in 2026 to prepare
-this repository for release. Specifically, it was used to:
+Claude (Anthropic), model `claude-opus-5`, was used under the author's direction in 2026 to **write
+the documentation for this repository** and to prepare it for release:
 
-- draft this README, including the description of how the index is derived, the data dictionary, and
-  the interpretation guidance;
-- write `LICENSE-DATA`, `CITATION.cff`, and `.zenodo.json`;
-- make seven forward-compatibility edits to `superdarn_mstid_plot.py` so it runs on current Python
-  releases, none of which changes a method, a threshold, or a result;
-- add version floors to `requirements.txt`;
-- verify the above: the data dictionary was checked column by column against the data files, the
-  plotting script was run end to end before and after its edits and confirmed to reproduce the
-  committed `output/`, and **every DOI in this repository was resolved against the Crossref API** and
-  compared on author, year, journal, volume, and issue.
+- **Documentation.** This README was drafted with AI assistance, including the description of what
+  the MSTID index is and how it is derived, the data dictionary, the guidance on interpreting a
+  value, the known limitations, the provenance statement, and the reference list.
+- **Release metadata.** `LICENSE-DATA`, `CITATION.cff`, and `.zenodo.json`.
+- **Code.** Seven forward-compatibility edits to `superdarn_mstid_plot.py` so that it runs on
+  current Python releases, none of which changes a method, a threshold, or a result, and version
+  floors in `requirements.txt`.
+- **Verification of the above.** The data dictionary was checked column by column against the data
+  files; the plotting script was run end to end before and after its edits and confirmed to
+  reproduce the committed `output/`; and **every DOI in this repository was resolved against the
+  Crossref API** and compared on author, year, journal, volume, and issue.
+
+The scientific content of the documentation is the author's: the index and its algorithm are his
+prior published work, and he directed and reviewed the description of them given here.
 
 The author set the objectives, made every scientific and licensing decision, and is responsible for
 the content of this repository, including the parts drafted with AI assistance. An AI tool is not an

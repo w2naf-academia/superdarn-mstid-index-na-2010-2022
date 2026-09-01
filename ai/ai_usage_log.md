@@ -380,3 +380,36 @@ it, each of which is listed line by line.
   deliverable and A2's requirement attaches to the deliverable rather than only to the source
   repository. Validated as JSON after editing.
 - **Git Hash**: ec8db6c
+
+## [2026-09-01 15:45 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5`, via Claude Code
+- **Session Purpose**: Two decisions from NAF on the AI disclosure drafted in the entry above.
+- **NAF's decisions** (2026-09-01), verbatim:
+  1. *"There is no need to state the fabricated-citation incident since we fixed it."*
+  2. *"I do want the AI disclosure to say that it was used for the documentation."*
+- **Action on decision 1: none required.** The README already omitted the incident, so his ruling
+  confirms the text as written. Recorded here specifically so a later session does not add it back
+  during a governance review and think it is filling a gap (P7). Note that the disclosure still
+  carries a general sentence saying this log records the errors the tool made and how they were
+  caught; that sentence names no incident, and it is what makes the pointer to this log honest
+  rather than promotional. It stays unless NAF says otherwise, and it has been flagged to him.
+- **Action on decision 2**: `README.md`, the AI assistance section. The lead sentence now says the
+  tool was used to **write the documentation for this repository**, where it previously said only
+  "prepare this repository for release" and left the reader to infer documentation from a bullet.
+  The four bullets gained labels, **Documentation** first, so the scope is legible at a glance
+  rather than buried in a list. The Documentation bullet now enumerates what it covers: the index
+  description and derivation, the data dictionary, the interpretation guidance, the known
+  limitations, the provenance statement, and the reference list.
+- **One sentence added beyond the instruction**, and flagged as such: "The scientific content of the
+  documentation is the author's: the index and its algorithm are his prior published work, and he
+  directed and reviewed the description of them given here." Stating that AI wrote the documentation
+  invites the question of whether AI originated the science in it. It did not, and A5 puts the
+  scientific content with the author, so the disclosure should answer that question where it is
+  raised. Remove it if NAF finds it unnecessary.
+- **`.zenodo.json` unchanged**: its paragraph already names documentation first in the list of uses.
+  Verified rather than assumed.
+- **Nature of Contribution**: Edit, to NAF's stated decisions.
+- **Human Review Status**: NAF made both decisions. The revised wording is pending his sign-off,
+  which A2 still requires before release.
+- **Git Hash**: [to be added after commit]
