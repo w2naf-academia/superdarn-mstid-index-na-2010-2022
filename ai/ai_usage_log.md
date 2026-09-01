@@ -228,4 +228,4 @@ it, each of which is listed line by line.
   numbers, `lws_hemispheres`, and the private analysis host now returns nothing across `README.md`
   and `ai/`. The one remaining hit, `mongo_to_csv.py` in the README provenance section, is already
   public: it is named in the comment header of all 120 CSV files in `data/`.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 87a8862
