@@ -379,4 +379,4 @@ it, each of which is listed line by line.
 - **`.zenodo.json`**: the same disclosure in one paragraph, because the Zenodo record is the citable
   deliverable and A2's requirement attaches to the deliverable rather than only to the source
   repository. Validated as JSON after editing.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: ec8db6c
