@@ -123,8 +123,24 @@ df = pd.read_csv(
 mstid_index = df['meanSubIntSpect_by_rtiCnt']
 ```
 
-The `.nc` files carry the same values plus per-radar metadata (latitude, longitude, MongoDB
-collection of origin) as netCDF attributes, and are what `superdarn_mstid_plot.py` reads.
+The `.nc` files hold the same measurements and are what `superdarn_mstid_plot.py` reads. They also
+carry the per-file provenance as eleven netCDF global attributes, which the CSV files repeat in
+their comment header:
+
+| Attribute | Example |
+|---|---|
+| `radar` | `bks` |
+| `lat`, `lon` | `37.1`, `-77.95` (center of the detection region) |
+| `season` | `20101101_20110501` |
+| `MongoDB_database` | `mstid_GSMR_fitexfilter` |
+| `MongoDB_collection` | `guc_bks_20101101_20110501` |
+| `MongoDB_MUSICcollection` | `music_guc_bks_20101101_20110501` |
+| `Max Number of Signals Reported` | `2` (the `sig_001_` and `sig_002_` column groups) |
+| `MongoDB_to_CSV_Script` | the export script that wrote the file |
+| `System Hostname` | the machine it was exported on |
+| `Script Run Time` | `2023-10-23 11:01:41.233926`, the export timestamp |
+
+Read them with `xarray.open_dataset(path).attrs`.
 
 ---
 
@@ -315,15 +331,19 @@ Twelve winter seasons, each 1 November to 1 May:
 
 ## Data dictionary
 
-Each row of `sdMSTIDindex_<season>_<radar>.csv` is one 2 h observational window. Rows are present
-for every window in the season, including rejected ones, where the spectral columns are empty and
-`reject_code` gives the reason.
+Each row of `sdMSTIDindex_<season>_<radar>.csv` is one 2 h observational window, and each netCDF
+record is the same. Rows are present for every window in the season, including rejected ones, where
+the spectral columns are empty and `reject_code` gives the reason.
+
+The CSV files carry 41 columns. The netCDF files carry the same 40 measured quantities as data
+variables, on two coordinates: `date` (the CSV's `datetime_ut`) and `radar`. The two formats hold
+the same information, and the time coordinate's name is the only thing that differs.
 
 ### Window identification and geometry
 
 | Column | Description |
 |---|---|
-| `datetime_ut` | UTC time at the start of the 2 h observation window |
+| `datetime_ut` | UTC time at the start of the 2 h observation window. **The netCDF files name this coordinate `date`**, stored as hours since the season's first window (`units = "hours since 2010-11-01 12:00:00"` for the 2010--2011 season); `xarray` decodes it to `datetime64` on open. This is the only name that differs between the two formats |
 | `lat`, `lon` | Geographic latitude and longitude of the center of the detection region |
 | `slt` | Solar mean time at that point |
 | `mlt` | Magnetic local time at that point |

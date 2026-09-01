@@ -179,3 +179,34 @@ it, each of which is listed line by line.
   file's older acknowledgment lists no award at all for Wallops Island. Updating the manuscript's
   statement remains reported and unacted on, pending NAF.
 - **Git Hash**: 0ff5a21
+
+## [2026-09-01 01:40 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
+- **Session Purpose**: Audit the data dictionary against the actual data files before the release,
+  and close the gaps it found.
+- **Sections/Files Affected**: `README.md`, the Quick start netCDF paragraph (now an eleven-row
+  global-attribute table) and the Data dictionary preamble and `datetime_ut` row.
+- **Nature of Contribution**: Verification, and documentation of what it found.
+- **Human Review Status**: Pending review.
+- **What the audit found**:
+  - **All 41 CSV columns are documented.** Checked by extracting the header row of a data file and
+    matching every column against the backticked names in the README, with the `sig_00N_` prefix
+    convention expanded. No column is missing, and nothing is documented that the files do not
+    contain.
+  - **One genuine gap**: the netCDF files name the time coordinate `date` where the CSV files call
+    it `datetime_ut`. A user opening a `.nc` and looking for `datetime_ut` would not find it. This
+    is the only name that differs between the two formats, confirmed by set comparison of the CSV
+    header against the netCDF variable list. Now stated in the preamble and in the `datetime_ut`
+    row, with the stored units and the decoded dtype.
+  - **The netCDF global attributes were under-documented**, described only as "per-radar metadata
+    (latitude, longitude, MongoDB collection of origin)". There are eleven, and they are the
+    per-file provenance record. Now a table.
+- **Corrections made to my own drafting in the same pass**: a first attempt wrote "the netCDF files
+  carry 40 variables", taken from an `ncdump` regex. `xarray` reports 42, since the file has 40 data
+  variables on two coordinates (`date` and `radar`). The text was corrected to name the 40 measured
+  quantities and the two coordinates separately. A first attempt also listed seven global attributes
+  where there are eleven, having transcribed from an `ncdump` excerpt rather than from
+  `xarray.open_dataset(...).attrs`. Both numbers in the committed text were then re-verified
+  programmatically against a data file.
+- **Git Hash**: [to be added after commit]
