@@ -531,4 +531,4 @@ it, each of which is listed line by line.
     survives anywhere in the file.
   - `README.md` was checked and never advertised any of the removed capability, so no documentation
     change was needed.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: f25ffde
