@@ -35,12 +35,6 @@ import colorcet
 import warnings
 warnings.filterwarnings(action='ignore', message='Mean of empty slice')
 
-#import merra2CipsAirsTimeSeries
-#import gnss_dtec_gw
-#import lstid_ham
-#import HIAMCM
-#import sme_plot
-
 pd.set_option('display.max_rows', None)
 
 mpl.rcParams['font.size']      = 12
@@ -128,116 +122,6 @@ prmd = prm_dct['meanSubIntSpect_by_rtiCnt_reducedIndex'] = {}
 prmd['title']           = 'Reduced SuperDARN MSTID Index'
 prmd['ylabel']          = 'Reduced SuperDARN\nMSTID Index'
 prmd['ylim']            = (-5,5)
-
-prmd = prm_dct['U_10HPA'] = {}
-prmd['scale_0']         = -100.
-prmd['scale_1']         =  100.
-prmd['cmap']            = mpl.cm.bwr
-prmd['cbar_label']      = 'U 10 hPa [m/s]'
-prmd['title']           = 'MERRA2 Zonal Winds 10 hPa [m/s]'
-prmd['data_dir']        = os.path.join('data','merra2','preprocessed')
-
-prmd = prm_dct['U_1HPA'] = {}
-prmd['scale_0']         = -100.
-prmd['scale_1']         =  100.
-prmd['cmap']            = mpl.cm.bwr
-prmd['cbar_label']      = 'U 1 hPa [m/s]'
-prmd['title']           = 'MERRA2 Zonal Winds 1 hPa [m/s]'
-prmd['data_dir']        = os.path.join('data','merra2','preprocessed')
-
-# ['DAILY_SUNSPOT_NO_', 'DAILY_F10.7_', '1-H_DST_nT', '1-H_AE_nT']
-# DAILY_SUNSPOT_NO_  DAILY_F10.7_    1-H_DST_nT     1-H_AE_nT
-# count       40488.000000  40488.000000  40488.000000  40488.000000
-# mean           58.125963    103.032365    -10.984427    162.772167
-# std            46.528777     29.990254     16.764279    175.810863
-# min             0.000000     64.600000   -229.500000      3.500000
-# 25%            17.000000     76.400000    -18.000000     46.000000
-# 50%            50.000000     97.600000     -8.000000     92.000000
-# 75%            90.000000    122.900000     -0.500000    215.000000
-# max           220.000000    255.000000     64.000000   1637.000000
-
-prmd = prm_dct['DAILY_SUNSPOT_NO_'] = {}
-prmd['scale_0']         = 0
-prmd['scale_1']         = 175.
-prmd['cmap']            = mpl.cm.cividis
-prmd['cbar_label']      = 'Daily SN'
-prmd['title']           = 'Daily Sunspot Number'
-prmd['data_dir']        = os.path.join('data','cdaweb_omni','preprocessed')
-
-prmd = prm_dct['DAILY_F10.7_'] = {}
-prmd['scale_0']         = 50.
-prmd['scale_1']         = 200.
-prmd['cmap']            = mpl.cm.cividis
-prmd['cbar_label']      = 'Daily F10.7'
-prmd['title']           = 'Daily F10.7 Solar Flux'
-prmd['data_dir']        = os.path.join('data','cdaweb_omni','preprocessed')
-
-prmd = prm_dct['1-H_DST_nT'] = {}
-prmd['scale_0']         =  -75
-prmd['scale_1']         =   25
-prmd['cmap']            = mpl.cm.inferno_r
-prmd['cbar_label']      = 'Dst [nT]'
-prmd['title']           = 'Disturbance Storm Time Dst Index [nT]'
-prmd['data_dir']        = os.path.join('data','cdaweb_omni','preprocessed')
-
-prmd = prm_dct['1-H_AE_nT'] = {}
-prmd['scale_0']         = 0
-prmd['scale_1']         = 400
-prmd['cmap']            = mpl.cm.viridis
-prmd['cbar_label']      = 'AE [nT]'
-prmd['title']           = 'Auroral Electrojet AE Index [nT]'
-prmd['data_dir']        = os.path.join('data','cdaweb_omni','preprocessed')
-
-prmd = prm_dct['OMNI_R_Sunspot_Number'] = {}
-prmd['scale_0']         = 0
-prmd['scale_1']         = 175.
-prmd['cmap']            = mpl.cm.cividis
-prmd['cbar_label']      = 'Daily SN'
-prmd['title']           = 'Daily Sunspot Number'
-prmd['data_dir']        = os.path.join('data','omni','preprocessed')
-
-prmd = prm_dct['OMNI_F10.7'] = {}
-prmd['scale_0']         = 50.
-prmd['scale_1']         = 200.
-prmd['cmap']            = mpl.cm.cividis
-prmd['cbar_label']      = 'Daily F10.7'
-prmd['title']           = 'Daily F10.7 Solar Flux'
-prmd['data_dir']        = os.path.join('data','omni','preprocessed')
-
-prmd = prm_dct['OMNI_Dst'] = {}
-prmd['scale_0']         =  -75
-prmd['scale_1']         =   25
-prmd['cmap']            = mpl.cm.inferno_r
-prmd['cbar_label']      = 'Dst [nT]'
-prmd['title']           = 'Disturbance Storm Time Dst Index [nT]'
-prmd['data_dir']        = os.path.join('data','omni','preprocessed')
-
-prmd = prm_dct['OMNI_AE'] = {}
-prmd['scale_0']         = 0
-prmd['scale_1']         = 400
-prmd['cmap']            = mpl.cm.viridis
-prmd['cbar_label']      = 'AE [nT]'
-prmd['title']           = 'Auroral Electrojet AE Index [nT]'
-prmd['data_dir']        = os.path.join('data','omni','preprocessed')
-
-prmd = prm_dct['merra2CipsAirsTimeSeries'] = {}
-prmd['scale_0']         = -20
-prmd['scale_1']         = 100
-prmd['levels']          = 11
-prmd['cmap']            = 'jet'
-prmd['cbar_label']      = 'MERRA-2 Zonal Wind\n[m/s] (50\N{DEGREE SIGN} N)'
-prmd['title']           = 'MERRA-2 Zonal Winds + CIPS & AIRS GW Variance'
-
-prmd = prm_dct['gnss_dtec_gw'] = {}
-prmd['cmap']            = 'jet'
-prmd['cbar_label']      = 'aTEC Amplitude (TECu)'
-prmd['title']           = 'GNSS aTEC Amplitude at 115\N{DEGREE SIGN} W'
-
-prmd = prm_dct['lstid_ham'] = {}
-prmd['title']           = 'Amateur Radio 14 MHz LSTID Observations'
-
-prmd = prm_dct['sme'] = {}
-prmd['title']           = 'SuperMAG Electrojet Index (SME)'
 
 prmd = prm_dct['reject_code'] = {}
 prmd['title']           = 'MSTID Index Data Quality Flag'
@@ -1129,13 +1013,6 @@ def stackplot(po_dct,params,season,radars=None,sDate=None,eDate=None,fpath='stac
         if param.endswith('_reducedIndex'):
             base_param      = param.removesuffix('_reducedIndex')
             plotType        = 'reducedIndex'
-        elif    (param == 'merra2CipsAirsTimeSeries' 
-              or param == 'gnss_dtec_gw' 
-              or param == 'lstid_ham'
-              or param == 'sme'
-              or param == 'HIAMCM'):
-            base_param      = param
-            plotType        = param
         else:
             base_param      = param
             plotType        = 'climo'
@@ -1144,13 +1021,6 @@ def stackplot(po_dct,params,season,radars=None,sDate=None,eDate=None,fpath='stac
         po      = po_dct.get(base_param)
         if plotType == 'reducedIndex':
             data_df = po.data[season]['reducedIndex']
-            prmd    = prm_dct.get(param,{})
-        elif  (plotType == 'merra2CipsAirsTimeSeries' 
-            or plotType == 'gnss_dtec_gw' 
-            or plotType == 'lstid_ham'
-            or plotType == 'sme'
-            or plotType == 'HIAMCM'):
-            data_df = None
             prmd    = prm_dct.get(param,{})
         else:
             data_df = po.data[season]['df']
@@ -1194,83 +1064,6 @@ def stackplot(po_dct,params,season,radars=None,sDate=None,eDate=None,fpath='stac
 
             ax_info = {}
             ax_info['ax']           = ax
-        elif plotType == 'merra2CipsAirsTimeSeries':
-            mca     = merra2CipsAirsTimeSeries.Merra2CipsAirsTS()
-            if 'scale_0' in prmd:
-                prmd['vmin'] = prmd['scale_0']
-            if 'scale_1' in prmd:
-                prmd['vmax'] = prmd['scale_1']
-            result  = mca.plot_ax(ax,plot_cbar=False,ylabel_fontdict=ylabel_fontdict,**prmd)
-
-            ax.set_xlim(sDate,eDate)
-
-            if xlabels is False:
-                ax.set_xlabel('')
-
-            ax_info = {}
-            ax_info['ax']           = ax
-            ax_info['cbar_pcoll']   = result['cbar_pcoll']
-            ax_info['cbar_label']   = prmd.get('cbar_label')
-        elif plotType == 'gnss_dtec_gw':
-            dTEC = gnss_dtec_gw.GNSS_dTEC_GW()
-            result  = dTEC.plot_ax(ax,plot_cbar=False,ylabel_fontdict=ylabel_fontdict,**prmd)
-
-            ax.set_xlim(sDate,eDate)
-            ax.set_ylim(40,50)
-
-            if xlabels is False:
-                ax.set_xlabel('')
-
-            ax_info = {}
-            ax_info['ax']           = ax
-            ax_info['cbar_pcoll']   = result['cbar_pcoll']
-            ax_info['cbar_label']   = prmd.get('cbar_label')
-        elif plotType == 'lstid_ham':
-            lstid = lstid_ham.LSTID_HAM()
-            result  = lstid.plot_ax(ax,legend_fontsize='x-large',ylabel_fontdict=ylabel_fontdict,
-                    legend_ncols=1,**prmd)
-
-            ax.set_xlim(sDate,eDate)
-
-            if xlabels is False:
-                ax.set_xlabel('')
-
-            if xlabels is False:
-                ax.set_xlabel('')
-
-            ax_info = {}
-            ax_info['ax']           = ax
-        elif plotType == 'sme':
-            sme     = sme_plot.SME_PLOT()
-            result  = sme.plot_ax(ax,legend_fontsize='x-large',ylabel_fontdict=ylabel_fontdict,
-                    xlim=(sDate,eDate),**prmd)
-
-            ax.set_xlim(sDate,eDate)
-
-            if xlabels is False:
-                ax.set_xlabel('')
-
-            if xlabels is False:
-                ax.set_xlabel('')
-
-            ax_info = {}
-            ax_info['ax']           = ax
-        elif plotType == 'HIAMCM':
-            hiamcm  = HIAMCM.HIAMCM()
-            result  = hiamcm.plot_ax(ax,prm='ww',lats=(40.,60.),
-                                     plot_cbar=False,ylabel_fontdict=ylabel_fontdict,**prmd)
-
-            ax.set_xlim(sDate,eDate)
-
-            if xlabels is False:
-                ax.set_xlabel('')
-
-            ax_info = {}
-            ax_info['ax']           = ax
-            ax_info['cbar_pcoll']   = result['cbar_pcoll']
-            ax_info['cbar_label']   = result.get('cbar_label')
-
-            prmd['title'] = result.get('title')
         else: 
             if radars is None:
                 _radars = po.radars
@@ -1399,9 +1192,6 @@ def prep_dir(path,clear=False):
 if __name__ == '__main__':
 
     output_base_dir     = 'output'
-#    mstid_data_dir      = os.path.join('data','mongo_out','mstid_MUSIC','guc')
-#    mstid_data_dir      = os.path.join('data','mongo_out','mstid_GSMR_fitexfilter_using_mstid_2016_dates','guc')
-#    mstid_data_dir      = os.path.join('data','mongo_out','mstid_2016','guc')
     mstid_data_dir      = os.path.join('data','mongo_out','mstid_GSMR_fitexfilter_rtiThresh-0.25','guc')
     plot_climatologies  = True
     plot_histograms     = True
@@ -1421,50 +1211,24 @@ if __name__ == '__main__':
     radars.append('bks')
     radars.append('wal')
 
-#    # Ordered by Longitude
-#    radars          = []
-#    radars.append('cvw')
-#    radars.append('pgr')
-#    radars.append('cve')
-#    radars.append('sas')
-#    radars.append('fhw')
-#    radars.append('fhe')
-#    radars.append('kap')
-#    radars.append('bks')
-#    radars.append('wal')
-#    radars.append('gbr')
-
+    # Every parameter below is a column of the data files in data/, so any of them can be
+    # uncommented and plotted. See the data dictionary in README.md for what each one is.
     params = []
     params.append('meanSubIntSpect_by_rtiCnt') # This is the MSTID index.
 #    params.append('meanSubIntSpect')
 #    params.append('intSpect_by_rtiCnt')
 #    params.append('intSpect')
 
+#    params.append('reject_code')            # data quality flag
+
+#    # MUSIC wave parameters. Sparse across the record; check coverage first.
 #    params.append('sig_001_azm_deg')
 #    params.append('sig_001_lambda_km')
 #    params.append('sig_001_period_min')
 #    params.append('sig_001_vel_mps')
 
-#    params.append('reject_code')
-
-#    params.append('U_10HPA')
-#    params.append('U_1HPA')
-
-#    params.append('OMNI_R_Sunspot_Number')
-#    params.append('OMNI_Dst')
-#    params.append('OMNI_F10.7')
-#    params.append('OMNI_AE')
-
-#    params.append('1-H_AE_nT')
-#    params.append('1-H_DST_nT')
-#    params.append('DAILY_F10.7_')
-#    params.append('DAILY_SUNSPOT_NO_')
-
+    # All twelve seasons. Pass a shorter list here to plot a subset.
     seasons = list_seasons()
-#    seasons = []
-#    seasons.append('20121101_20130501')
-##    seasons.append('20171101_20180501')
-#    seasons.append('20181101_20190501')
 
 ################################################################################
 # LOAD RADAR DATA ##############################################################
@@ -1504,54 +1268,24 @@ if __name__ == '__main__':
 ################################################################################
 # STACKPLOTS ###################################################################
 
+    # Each stack set is a list of parameters plotted as stacked panels for one season.
+    # Only parameters present in data/ can be used; see the note above the params list.
     stack_sets  = {}
-##    ss = stack_sets['cdaweb_omni'] = []
-##    ss.append('meanSubIntSpect_by_rtiCnt')
-##    ss.append('1-H_AE_nT')
-##    ss.append('1-H_DST_nT')
-##    ss.append('DAILY_F10.7_')
-###    ss.append('DAILY_SUNSPOT_NO_')
-
-#    ss = stack_sets['omni'] = []
-#    ss.append('meanSubIntSpect_by_rtiCnt')
-#    ss.append('OMNI_AE')
-#    ss.append('OMNI_Dst')
-##    ss.append('OMNI_F10.7')
-##    ss.append('OMNI_R_Sunspot_Number')
-#
-#    ss = stack_sets['mstid_merra2'] = []
-#    ss.append('meanSubIntSpect_by_rtiCnt')
-#    ss.append('U_1HPA')
-#    ss.append('U_10HPA')
-#
-#    ss = stack_sets['data_quality'] = []
-#    ss.append('meanSubIntSpect_by_rtiCnt')
-#    ss.append('reject_code')
 
     ss = stack_sets['mstid_index_reduced'] = []
     ss.append('meanSubIntSpect_by_rtiCnt')
     ss.append('meanSubIntSpect_by_rtiCnt_reducedIndex')
-#
-##    ss = stack_sets['mstid_index'] = []
-##    ss.append('meanSubIntSpect_by_rtiCnt')
 
-#    ss = stack_sets['figure_3'] = []
-#    ss.append('merra2CipsAirsTimeSeries')
-#    ss.append('HIAMCM')
-#    ss.append('gnss_dtec_gw')
+#    # Coverage view: the index beside the quality-control flag that produced it.
+#    ss = stack_sets['data_quality'] = []
 #    ss.append('meanSubIntSpect_by_rtiCnt')
-#    ss.append('lstid_ham')
-#    ss.append('sme')
-##    ss.append('meanSubIntSpect_by_rtiCnt_reducedIndex')
+#    ss.append('reject_code')
 
     if plot_stackplots:
         for stack_code,stack_params in stack_sets.items():
             stack_dir  = os.path.join(output_base_dir,'stackplots',stack_code)
             prep_dir(stack_dir,clear=True)
             for season in seasons:
-                if stack_code == 'figure_3':
-                    if season != '20181101_20190501':
-                        continue
                 png_name    = '{!s}_stack_{!s}.png'.format(season,stack_code)
                 png_path    = os.path.join(stack_dir,png_name) 
 

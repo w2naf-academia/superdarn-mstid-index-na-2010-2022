@@ -479,3 +479,56 @@ it, each of which is listed line by line.
   a DOI's **identity** and leaves citation style to a human. This is stated in the module docstring
   so a later reader does not "fix" the table into disagreeing with the registry.
 - **Git Hash**: 94af2d7
+
+## [2026-09-01 15:59 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5`, via Claude Code
+- **Session Purpose**: The second of NAF's two remaining items: remove the dead code from
+  `superdarn_mstid_plot.py`.
+- **Sections/Files Affected**: `superdarn_mstid_plot.py` only, **1558 to 1292 lines**. No data file,
+  no output file, and no other file changed.
+- **Nature of Contribution**: Code removal.
+- **Human Review Status**: Pending review.
+- **What was removed, and why it was dead rather than merely unused**: the script referenced five
+  modules that are **not in this repository** (`merra2CipsAirsTimeSeries`, `gnss_dtec_gw`,
+  `lstid_ham`, `HIAMCM`, `sme_plot`). Their imports were commented out, but the calls were not: five
+  live branches inside `stackplot()` instantiated those classes and would have raised `NameError` at
+  runtime for anyone who reached them. This was worse than clutter, because the parameter dictionary
+  advertised those plot types as available options.
+  - five commented imports (6 lines);
+  - fourteen `prm_dct` entries whose data this bundle does not ship: `U_10HPA`, `U_1HPA` (want
+    `data/merra2/`), `DAILY_SUNSPOT_NO_`, `DAILY_F10.7_`, `1-H_DST_nT`, `1-H_AE_nT` (want
+    `data/cdaweb_omni/`), the four `OMNI_*` (want `data/omni/`), and `merra2CipsAirsTimeSeries`,
+    `gnss_dtec_gw`, `lstid_ham`, `sme` (want the absent modules). Only `data/mongo_out/` ships, so
+    none could work (110 lines);
+  - the two five-way dispatch branches in `stackplot()` and the five plotting branches they reached
+    (77 lines plus the dispatch);
+  - in `__main__`: three commented alternate data directories that do not exist here, an alternate
+    radar ordering, commented season subsets, four commented `stack_sets` naming unavailable
+    parameters, the `figure_3` set, and the `if stack_code == 'figure_3'` guard that became
+    unreachable with it.
+- **What was deliberately kept**: every `prm_dct` entry that names a column actually present in the
+  data files, so the ten remaining keys are all usable: `meanSubIntSpect_by_rtiCnt`,
+  `meanSubIntSpect`, `intSpect_by_rtiCnt`, `intSpect`, `reject_code`, the four `sig_001_*` wave
+  parameters, and the reduced index. The commented `params.append(...)` lines for those were kept
+  and now carry a comment saying that every parameter listed is a column of the shipped data, which
+  turns them from clutter into a usable menu. The `data_quality` stack set was kept, commented, with
+  a line explaining it, because `reject_code` is in the data and pairing the index with its
+  quality-control flag is a genuinely useful coverage view.
+- **Verification, and a control to rule out my own change**:
+  - The script was run end to end over all twelve seasons after the removal: exit 0, no traceback,
+    39 output files, and **all 14 PNGs pixel-identical** to the pre-cleanup baseline (maximum
+    per-channel difference exactly 0). CSV comment headers are identical apart from the generation
+    timestamp.
+  - The CSV numbers differ from the baseline by at most **1.776e-15**, in the reduced-index files.
+    Rather than assume that was pre-existing float noise, the original 1558-line script was
+    restored and run again against the same data: it produces **the identical 1.776e-15**. The
+    cleanup therefore contributes exactly zero, and the residual is run-to-run accumulation-order
+    noise in `numpy`. The cleaned script was then restored.
+  - `output/` was reverted to its committed state afterward, so the removal introduces no churn in
+    the archived product.
+  - A grep confirms no reference to any of the five absent modules or fourteen removed parameters
+    survives anywhere in the file.
+  - `README.md` was checked and never advertised any of the removed capability, so no documentation
+    change was needed.
+- **Git Hash**: [to be added after commit]
