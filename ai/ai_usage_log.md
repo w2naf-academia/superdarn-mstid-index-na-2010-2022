@@ -270,4 +270,4 @@ it, each of which is listed line by line.
   **only** in this README, in the four places now fixed. `references.bib` and the manuscript were
   always correct, and the manuscript renders its citations from the bibliography rather than by
   hand, so nothing else was affected.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 925a625
