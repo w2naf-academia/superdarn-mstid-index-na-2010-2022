@@ -311,3 +311,34 @@ it, each of which is listed line by line.
   windowed product is a different set of numbers. The measurements are recorded here and in the
   project's private log.
 - **Git Hash**: 65a9a32
+
+## [2026-09-01 15:29 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
+- **Session Purpose**: Follow NAF's rename of this repository from `mstid_index` to
+  `superdarn-mstid-index-na-2010-2022`, updating every reference that points at it.
+- **NAF's instruction** (2026-09-01): *"I renamed it and I am not worried about redirects. Change
+  all local references."* The name was chosen from options proposed this session; the rename was
+  done deliberately **before** the Zenodo DOI, because Zenodo stamps the repository name into the
+  record and the archive filename.
+- **Why the rename**: `mstid_index` had become ambiguous. `DATA_INVENTORY.md` in the paper repo
+  already uses `mstid_index_nh`, `mstid_index_nh_1aug`, and `mstid_index_sh` as three distinct
+  archive themes, and the bare name pointed at four different things. The new name states the
+  instrument, the quantity, the sector, and the span.
+- **Sections/Files Affected**: `README.md` (the clone command, the `cd` that follows it, and the
+  root of the repository-layout tree) and `CITATION.cff` (`repository-code`).
+- **Nature of Contribution**: Mechanical reference update.
+- **Human Review Status**: Pending review. NAF performed the rename and directed the update.
+- **Verification**:
+  - Three surviving occurrences of the old string were checked individually and **deliberately
+    left**, because they are not references to the repository: `mstid_index` as a Python variable
+    name in the README's usage example, and `output/stackplots/mstid_index_reduced/` plus the
+    stackplot filenames under it, which are real directory and file names the plotting script
+    produces. Confirmed against the filesystem rather than assumed.
+  - The repository's own AI usage log was **not** rewritten. Its earlier entries name
+    `mstid_index` because that was the repository's name when the work was done. Editing them to
+    read as though the current name had always applied would falsify the record that A1 exists to
+    keep.
+  - `git remote get-url origin` now returns the new URL, and a fetch against it succeeds with
+    `origin/main` matching local `HEAD`.
+- **Git Hash**: [to be added after commit]

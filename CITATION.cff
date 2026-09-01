@@ -28,7 +28,7 @@ keywords:
   - ionosphere
   - HF radar
 license: CC-BY-4.0
-repository-code: "https://github.com/w2naf-academia/mstid_index"
+repository-code: "https://github.com/w2naf-academia/superdarn-mstid-index-na-2010-2022"
 references:
   - type: article
     title: "Sources and characteristics of medium-scale traveling ionospheric disturbances observed by high-frequency radars in the North American sector"

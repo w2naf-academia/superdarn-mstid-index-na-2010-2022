@@ -96,8 +96,8 @@ short exchange can save you from an analysis the data will not support. Write to
 ## Quick start
 
 ```bash
-git clone https://github.com/w2naf-academia/mstid_index.git
-cd mstid_index
+git clone https://github.com/w2naf-academia/superdarn-mstid-index-na-2010-2022.git
+cd superdarn-mstid-index-na-2010-2022
 
 python -m venv venv
 source venv/bin/activate          # Windows: venv\Scripts\activate
@@ -286,7 +286,7 @@ generating parameters are recorded in each file's header.
 ## Repository layout
 
 ```
-mstid_index/
+superdarn-mstid-index-na-2010-2022/
 ├── superdarn_mstid_plot.py    Climatology, histogram, and stack plots
 ├── requirements.txt
 ├── data/
