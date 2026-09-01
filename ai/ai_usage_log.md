@@ -435,3 +435,47 @@ it, each of which is listed line by line.
   verbatim. Changes to the **scope** of AI assistance in this repository must still be reflected
   here, because A2 requires the disclosure to stay accurate as scope changes.
 - **Git Hash**: 00d2c93
+
+## [2026-09-01 15:54 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5`, via Claude Code
+- **Session Purpose**: NAF asked for the two remaining optional items. This entry covers the first:
+  a committed Crossref guard so the fabricated-citation failure cannot recur silently in an archived,
+  citable repository (P6: a check quoted once must be re-runnable, not recalled).
+- **Sections/Files Affected**: `tools/check_references.py` (new, 240 lines, standard library only);
+  `README.md`, a paragraph opening the References section and a clause in the AI assistance
+  section's verification bullet.
+- **Nature of Contribution**: Code generation and documentation.
+- **Human Review Status**: Pending review.
+- **What it enforces**, three independent checks rather than one:
+  1. Every DOI appearing in `README.md`, `CITATION.cff`, `.zenodo.json` or `LICENSE-DATA` must be
+     listed in the script's `EXPECTED` table. A newly added DOI therefore **fails until someone
+     states what it should resolve to**, which is the check that would have caught the original
+     error at the moment it was introduced.
+  2. Every `EXPECTED` entry must still appear in `README.md`, so the table cannot rot into a list of
+     references the repository no longer makes.
+  3. Crossref's metadata must match `EXPECTED` on first author, year, journal, volume and issue, and
+     on page range where Crossref supplies one. Funder ids resolve against the funders endpoint.
+- **A real defect the script found on its first run**: `.zenodo.json` states grants in Zenodo's
+  `<funder DOI>::<award number>` form, which the DOI regex swallowed whole and reported as three
+  unlisted funder ids. Rather than widen the regex to ignore them, the script now parses that form
+  and checks the award numbers against a literal `EXPECTED_GRANTS` set, because a typo in a grant
+  number is a funder-reporting error (A6) that nothing else here would catch.
+- **Verification, by making it fail on purpose**: a check that cannot fail is worthless, so three
+  cases were run against a temporarily corrupted tree and then restored.
+  - Reintroducing the original bad DOI `10.1029/2008JA013980` into the README is caught **twice**,
+    by check 1 as an unlisted DOI and by check 2 as an `EXPECTED` entry gone missing, and the
+    process exits **1**.
+  - Corrupting an `EXPECTED` journal name is caught by check 3, and the failure output prints the
+    registry's value, the expected value, and the registry's title, which is what a reader needs to
+    tell a typo from a wrong paper.
+  - `--offline` runs checks 1 and 2 with no network access and exits 0 on a clean tree.
+  - Exit codes were confirmed explicitly: **1** on a real regression and **0** when clean, so this
+    is usable as a release gate rather than only as a report.
+- **A note on `EXPECTED`**: it holds the values *Crossref* reports, which are not always the values
+  a citation should print. Bristow et al. (1994) appeared in *Journal of Geophysical Research*
+  before the Space Physics split and Crossref canonicalizes the modern name; the two *Radio Science*
+  entries are article numbers Crossref does not put in its page field. The script therefore verifies
+  a DOI's **identity** and leaves citation style to a human. This is stated in the module docstring
+  so a later reader does not "fix" the table into disagreeing with the registry.
+- **Git Hash**: [to be added after commit]

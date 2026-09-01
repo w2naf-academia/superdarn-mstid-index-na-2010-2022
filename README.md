@@ -455,6 +455,14 @@ reproduces the committed `output/` to floating-point round-off, with the figures
 
 ## References
 
+Every DOI in this repository is checked against the
+[Crossref](https://api.crossref.org) registry by
+[`tools/check_references.py`](tools/check_references.py), which compares first author, year,
+journal, volume, issue, and page range against a table of verified values, and fails if a DOI
+appears anywhere in the documentation without being in that table. Run it with
+`python tools/check_references.py`, or `--offline` to skip the network lookups.
+
+
 - Blanchard, G. T., Sundeen, S., & Baker, K. B. (2009). Probabilistic identification of
   high-frequency radar backscatter from the ground and ionosphere based on spectral characteristics.
   *Radio Science*, 44(5), RS5012. <https://doi.org/10.1029/2009RS004141>
@@ -507,7 +515,9 @@ the documentation for this repository** and to prepare it for release:
 - **Verification of the above.** The data dictionary was checked column by column against the data
   files; the plotting script was run end to end before and after its edits and confirmed to
   reproduce the committed `output/`; and **every DOI in this repository was resolved against the
-  Crossref API** and compared on author, year, journal, volume, and issue.
+  Crossref API** and compared on author, year, journal, volume, and issue. That last check is
+  committed as [`tools/check_references.py`](tools/check_references.py) so it can be re-run rather
+  than taken on trust.
 
 The scientific content of the documentation is the author's: the index and its algorithm are his
 prior published work, and he directed and reviewed the description of them given here.
