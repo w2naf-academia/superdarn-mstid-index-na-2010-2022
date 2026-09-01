@@ -564,4 +564,4 @@ it, each of which is listed line by line.
 - **Verification**: `AGS-2426201` remains correct inside the acknowledgment block; no `AGU-` string
   survives anywhere in `README.md`; the block still covers all ten radars; and
   `tools/check_references.py --offline` still passes, confirming the edit did not disturb a DOI.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 02c6c6e
