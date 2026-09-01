@@ -412,4 +412,4 @@ it, each of which is listed line by line.
 - **Nature of Contribution**: Edit, to NAF's stated decisions.
 - **Human Review Status**: NAF made both decisions. The revised wording is pending his sign-off,
   which A2 still requires before release.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: a11af0e
