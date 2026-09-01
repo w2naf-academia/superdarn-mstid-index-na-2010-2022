@@ -271,3 +271,43 @@ it, each of which is listed line by line.
   always correct, and the manuscript renders its citations from the bibliography rather than by
   hand, so nothing else was affected.
 - **Git Hash**: 925a625
+
+## [2026-09-01 15:22 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
+- **Session Purpose**: State the season window explicitly, following NAF's decision that this bundle
+  stays on 1 November.
+- **NAF's decision** (2026-09-01), his own framing: keep the bundle at 1 November and *"state the
+  difference explicitly in the README, since the bundle is a frozen 2023 export with its own
+  provenance"*, adding that *"this particular repo is supporting a different paper than the
+  manuscript we are developing here."*
+- **Sections/Files Affected**: `README.md`. A new interpretation caveat, "The season window is part
+  of the index definition", in the How to interpret a value section; the season window stated on the
+  season list; a new Known limitations entry; and the License rationale for CC BY 4.0 rewritten so it
+  no longer leans on a different paper's release terms.
+- **Nature of Contribution**: Documentation, from an analysis run this session.
+- **Human Review Status**: Pending review. NAF made the decision; he has not read the new text.
+- **Why this matters to a user of the bundle**: the index is an anomaly against a per-radar,
+  per-season **mean spectrum**, so the season window is not a coverage choice. It sets the reference
+  the values are measured against. Changing the window changes every value for the same radar, day,
+  and hour.
+- **Verification**: the mechanism was confirmed in the `DARNtids` source, where the reference is the
+  mean over all accepted windows for a radar and season (`darntids/classify.py`,
+  `all_spect_mean = np.mean(all_spect_df, axis=1)`), and then measured. Comparing this bundle
+  against a 1 August export of the same index, over the **110 overlapping radar-seasons** and
+  restricted to windows both contain: **no radar-season is bit-identical**, the median worst-case
+  difference is **27% of this bundle's own standard deviation** for that radar-season, the worst is
+  **157%** (`pgr`, 2011--2012), and the correlation stays high (median Pearson *r* = 0.9997, minimum
+  0.990). So the shape of the series survives and individual values do not.
+- **A correction to my own first reading**: a single-radar spot check (`bks`, 2018--2019) showed a
+  difference of only about 1% of the spread, which would have supported a much weaker caveat. That
+  radar-season is atypical. The 110-radar-season sweep was run before anything was written, and it
+  is what the README reflects.
+- **Deliberately not in the README**: the magnitudes above, and any description of the other
+  analysis's season window. That comparison bundle is a concurrent session's unreviewed work in a
+  private repository, so quoting numbers from it in a public README would give them a standing they
+  have not earned (W12) and would disclose the internal state of an unpublished manuscript (A4). The
+  README states the mechanism, which is certain from the source code, and says a differently
+  windowed product is a different set of numbers. The measurements are recorded here and in the
+  project's private log.
+- **Git Hash**: [to be added after commit]

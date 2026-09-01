@@ -252,6 +252,14 @@ the whole season, so the seasonal decline of MSTID activity from midwinter to sp
 Frissell et al. (2016) remains in the index. Any analysis of departures from the seasonal cycle
 needs to remove that cycle explicitly.
 
+**The season window is part of the index definition.** Every value here comes from a season defined
+as **1 November through 30 April**, and the reference spectrum *S̄*(*f*) is the average over the
+windows in that interval. A bundle computed on a different season window has a different reference
+spectrum, so it produces different numbers for the very same radar, day, and hour. The values remain
+strongly correlated, because the underlying measurement has not changed, and they are not
+interchangeable. Do not mix values from exports built on different windows, and state the window
+whenever you cite the index.
+
 Typical magnitudes are small: the plotting script uses a color scale of -0.025 to +0.025, and the
 full distribution across the record spans roughly -0.05 to +0.05.
 
@@ -323,7 +331,8 @@ radar's MSTID detection region, as recorded in the data files.
 `cvw`/`cve` and `fhw`/`fhe` are co-located twin radars pointing in different directions, which is
 why each pair shares a detection-region center point.
 
-Twelve winter seasons, each 1 November to 1 May:
+Twelve winter seasons. **The season window for this bundle is 1 November through 30 April**, and
+the second date in each directory name is the exclusive end bound (1 May):
 
 `20101101_20110501` · `20111101_20120501` · `20121101_20130501` · `20131101_20140501` ·
 `20141101_20150501` · `20151101_20160501` · `20161101_20170501` · `20171101_20180501` ·
@@ -416,6 +425,11 @@ the specific radars and dates of interest before relying on them.
   roughly twice as many candidate windows as the ground-scatter threshold does.
 - **Single processing chain.** These files come from one `DARNtids` run against FITACF 2.5 data.
   They have not been reprocessed against FITACF3.
+- **One season window.** This bundle is a 1 November through 30 April export, frozen in October 2023.
+  Other analyses of the SuperDARN MSTID index use wider windows, which capture the autumn rise in
+  ground scatter that a 1 November start truncates. Because the season sets the reference spectrum,
+  such a product is a different set of numbers rather than an extension of this one. See
+  [The season window is part of the index definition](#how-to-interpret-a-value).
 
 ## Provenance
 
@@ -482,8 +496,8 @@ This repository carries two licenses, one for the data and one for the software.
 
 Copyright (c) 2023--2026 Nathaniel A. Frissell.
 
-CC BY 4.0 matches the terms under which the SuperDARN MSTID index is released alongside the paper
-in preparation. GPL-3.0 matches
+CC BY 4.0 was chosen so the data can be reused and redistributed with attribution alone. GPL-3.0
+matches
 [`DARNtids`](https://github.com/w2naf-academia/DARNtids),
 [`pyDARNmusic`](https://github.com/w2naf-academia/pyDARNmusic), and the analysis package for that
 paper.
