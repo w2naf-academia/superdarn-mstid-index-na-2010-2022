@@ -110,8 +110,8 @@ it, each of which is listed line by line.
     than reproducing it. Reproducing a license text from memory risks a subtly wrong legal
     instrument (W12), and a reference cannot drift from the canonical version.
   - `.zenodo.json` parses as JSON; `CITATION.cff` parses as YAML with `cff-version: 1.2.0`.
-  - NAF's ORCID `0000-0002-8398-4222` was taken from the author block of `overleaf/main.tex`, and
-    his affiliation from `\affiliation{1}` there.
+  - NAF's ORCID `0000-0002-8398-4222` and his affiliation were taken from an authoritative source
+    in the project rather than recalled.
   - The three grant identifiers in `.zenodo.json` are the ones named in the project's governance
     file: NASA 80NSSC23K0848, NASA 80NSSC21K1772, NSF AGS-2045755.
 - **Still open**: the Zenodo DOI itself. The README carries `[DOI to be assigned at release]` in
@@ -149,13 +149,10 @@ it, each of which is listed line by line.
     before submitting.
   - The generator page could not be fetched for independent confirmation: it builds the statement
     client-side, so the text is absent from the served HTML.
-- **Related finding, not acted on**: `overleaf/main.tex` line 363 carries an **older version of
-  this same statement**, with superseded operators and award numbers (Virginia Tech `AGS-1935110`,
-  Dartmouth `AGS-1341925`, Saskatoon and Prince George attributed to "the University of
-  Saskatchewan" rather than SuperDARN Canada, no award for Wallops Island, and "Fort Hays" rather
-  than the two named radars). `MSTID-Climatology-Paper-2026/README.md` line 296 carries only a
-  one-line thanks to the SuperDARN community. Both were reported to NAF rather than edited, since
-  the manuscript's Acknowledgments are flagged in its own draft note as pending the author list.
+- **Related finding, not acted on**: two other documents in this project carry an older revision of
+  this same acknowledgment. Both were reported to NAF and left unedited, since sequencing changes to
+  them is his. The specifics are recorded in the project's private AI usage log, because they concern
+  the internal state of an unpublished manuscript (A4).
 - **Git Hash**: 1787ff6
 
 ## [2026-08-31 21:14 UTC]
@@ -175,9 +172,8 @@ it, each of which is listed line by line.
   who diffs our statement against the generator's output will find the difference already
   explained rather than looking like an error on our part. The remaining text is unchanged and
   still matches the generator character for character.
-- **Still open**: the same correction has no counterpart in `overleaf/main.tex` yet, because that
-  file's older acknowledgment lists no award at all for Wallops Island. Updating the manuscript's
-  statement remains reported and unacted on, pending NAF.
+- **Still open**: the corresponding update to the other documents noted in the previous entry
+  remains reported and unacted on, pending NAF.
 - **Git Hash**: 0ff5a21
 
 ## [2026-09-01 14:49 UTC]
@@ -210,3 +206,26 @@ it, each of which is listed line by line.
   `xarray.open_dataset(...).attrs`. Both numbers in the committed text were then re-verified
   programmatically against a data file.
 - **Git Hash**: c8411c5
+
+## [2026-09-01 14:52 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
+- **Session Purpose**: Pre-push review of this public repository, at NAF's instruction to push.
+- **Sections/Files Affected**: `ai/ai_usage_log.md`, three passages in the entries above.
+- **Nature of Contribution**: Governance correction.
+- **Human Review Status**: Pending review.
+- **What was wrong**: this log is in a **public** repository, and three passages written in earlier
+  entries carried internal detail about an unpublished manuscript in a **private** repository:
+  superseded grant numbers from its acknowledgment, the fact that its author list is unsettled,
+  file-and-line pointers into the private tree, and the path of the manuscript source. That is the
+  category A4 prohibits sending outward, and the project's own visibility policy keeps
+  session-by-session AI detail internal until the manuscript's disclosure paragraph is final.
+- **What changed**: the substance of what AI did **to this repository** is unchanged and complete.
+  The cross-repository specifics were replaced with a statement that they exist and are recorded in
+  the project's private log. Nothing was deleted to make the record look cleaner; the finding is
+  still here, pointing at where its detail lives.
+- **Verification**: a grep for `overleaf`, `main.tex`, `author list`, the two superseded award
+  numbers, `lws_hemispheres`, and the private analysis host now returns nothing across `README.md`
+  and `ai/`. The one remaining hit, `mongo_to_csv.py` in the README provenance section, is already
+  public: it is named in the comment header of all 120 CSV files in `data/`.
+- **Git Hash**: [to be added after commit]
