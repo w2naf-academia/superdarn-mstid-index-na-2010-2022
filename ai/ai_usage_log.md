@@ -688,4 +688,4 @@ it, each of which is listed line by line.
   title. The new check was then tested by breaking it on purpose: typing the concept DOI as
   `...22697950` in the README is caught and exits 1. A clean run passes all four groups, and the
   eight article DOIs still verify against Crossref.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 20b1dc9
