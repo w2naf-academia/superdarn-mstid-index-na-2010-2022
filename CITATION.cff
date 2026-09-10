@@ -1,5 +1,8 @@
 cff-version: 1.2.0
 title: "SuperDARN MSTID Index, North American sector, 2010-2022"
+doi: "10.5281/zenodo.22697959"
+version: "v1.0.0"
+date-released: "2026-09-10"
 message: "If you use this dataset or software, please cite both this record and Frissell et al. (2016), which defines the index."
 type: dataset
 authors:

@@ -1,5 +1,7 @@
 # SuperDARN MSTID Index: Data and Plotting Tools
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22697959.svg)](https://doi.org/10.5281/zenodo.22697959)
+
 Twelve Northern Hemisphere winters (2010--2011 through 2021--2022) of the SuperDARN
 Medium-Scale Traveling Ionospheric Disturbance (MSTID) index, computed for ten North American
 SuperDARN radars, together with the script that produces climatology and stack plots from it.
@@ -43,7 +45,10 @@ University of Scranton, <nathaniel.frissell@scranton.edu>
 If you use this dataset or code, please cite both the dataset and the paper that defines the index:
 
 > Frissell, N. A. (2026). *SuperDARN MSTID Index, North American sector, 2010--2022* [Data set].
-> Zenodo. [DOI to be assigned at release]
+> Zenodo. <https://doi.org/10.5281/zenodo.22697959>
+
+That is the **concept DOI**, which always resolves to the most recent version. To cite this
+specific release instead, use <https://doi.org/10.5281/zenodo.22697960> (v1.0.0).
 
 Machine-readable metadata is in [`CITATION.cff`](CITATION.cff), which GitHub and Zenodo both read.
 

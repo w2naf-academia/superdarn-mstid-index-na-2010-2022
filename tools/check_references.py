@@ -91,6 +91,16 @@ EXPECTED = {
 # `{"errors": "Invalid value 10.13039/100000104."}`. Structured funding metadata can be added
 # through the Zenodo web form after a record exists, where it is picked from their vocabulary
 # rather than asserted blind.
+# This dataset's own Zenodo DOIs. Verified against Zenodo rather than Crossref, because
+# Zenodo mints them and Crossref does not index them. The concept DOI is the one to cite: it
+# always resolves to the newest version. Both are checked so that a typo in either, in the
+# README citation or in CITATION.cff, fails rather than sending a reader to another record.
+SELF_ZENODO_RECORD = "22697960"
+SELF_DOIS = {
+    "10.5281/zenodo.22697959": "concept",
+    "10.5281/zenodo.22697960": "version",
+}
+
 EXPECTED_AWARDS = {
     "80NSSC23K0848",
     "80NSSC21K1772",
@@ -109,7 +119,11 @@ def scan():
         if not path.exists():
             continue
         for raw in DOI_RE.findall(path.read_text(encoding="utf-8")):
-            found.setdefault(raw.rstrip(".,);>"), set()).add(name)
+            doi = raw.rstrip(".,);>")
+            for ext in (".svg", ".png", ".json"):   # badge URLs embed the DOI plus an extension
+                if doi.endswith(ext):
+                    doi = doi[: -len(ext)]
+            found.setdefault(doi, set()).add(name)
     return found
 
 
@@ -127,8 +141,12 @@ def main():
     args = ap.parse_args()
 
     found = scan()
+    self_dois = {d: f for d, f in found.items() if d in SELF_DOIS}
     articles = {d: f for d, f in found.items()
-                if not d.startswith("10.13039/") and "::" not in d}
+                if not d.startswith("10.13039/") and "::" not in d
+                and d not in SELF_DOIS and not d.startswith("10.5281/zenodo.")}
+    stray_zenodo = {d: f for d, f in found.items()
+                    if d.startswith("10.5281/zenodo.") and d not in SELF_DOIS}
     funders = {d: f for d, f in found.items() if d.startswith("10.13039/")}
     zenodo_text = (REPO / ".zenodo.json").read_text(encoding="utf-8")
     readme = (REPO / "README.md").read_text(encoding="utf-8")
@@ -148,6 +166,12 @@ def main():
     for doi in sorted(funders):
         print(f"    FAIL  {doi}  funder DOI in a file; Zenodo rejects these in `grants`")
         failures.append(f"unexpected funder DOI {doi}")
+    for doi in sorted(self_dois):
+        print(f"    ok    {doi}  (this dataset, {SELF_DOIS[doi]} DOI)")
+    for doi in sorted(stray_zenodo):
+        print(f"    FAIL  {doi}  Zenodo DOI that is not this dataset's; add it to SELF_DOIS "
+              f"or correct it")
+        failures.append(f"unrecognised Zenodo DOI {doi}")
 
     # 2. The table may not go stale.
     print("\n[2] every EXPECTED DOI still appears in README.md")
@@ -166,6 +190,31 @@ def main():
         else:
             print(f"    FAIL  {award}  not stated in .zenodo.json")
             failures.append(f"missing award number {award}")
+
+    # 2c. Both of this dataset's own DOIs must resolve to this record at Zenodo.
+    if args.offline:
+        print("\n[2c] Zenodo self-DOI check SKIPPED (--offline)")
+    else:
+        print("\n[2c] this dataset's own DOIs resolve to its Zenodo record")
+        try:
+            req = urllib.request.Request(
+                f"https://zenodo.org/api/records/{SELF_ZENODO_RECORD}",
+                headers={"User-Agent": UA})
+            rec = json.load(urllib.request.urlopen(req, timeout=30))
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as err:
+            print(f"    FAIL  could not reach Zenodo: {err}")
+            failures.append("Zenodo lookup failed")
+            rec = None
+        if rec is not None:
+            actual = {"concept": rec.get("conceptdoi"), "version": rec.get("doi")}
+            for doi, kind in sorted(SELF_DOIS.items(), key=lambda kv: kv[1]):
+                if actual.get(kind) == doi:
+                    print(f"    ok    {kind:8} {doi}")
+                else:
+                    print(f"    FAIL  {kind:8} {doi}  != Zenodo's {actual.get(kind)!r}")
+                    failures.append(f"self DOI mismatch ({kind})")
+            title = (rec.get("metadata") or {}).get("title", "")
+            print(f"    record title: {title}")
 
     # 3. Crossref must agree with the table.
     if args.offline:

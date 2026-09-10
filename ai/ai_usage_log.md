@@ -656,3 +656,36 @@ it, each of which is listed line by line.
   form is caught and exits 1. A clean run passes, and the eight article DOIs still verify against
   Crossref.
 - **Git Hash**: 1ae8202
+
+## [2026-09-10 21:13 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
+- **Session Purpose**: Backfill the minted Zenodo DOI after the re-cut `v1.0.0` release succeeded.
+- **The release succeeded.** Zenodo record **22697960**, published 2026-09-10, from the re-cut tag at
+  `bbc6be1`. **Concept DOI `10.5281/zenodo.22697959`**, version DOI `10.5281/zenodo.22697960`,
+  archive 30.3 MB. The record was verified field by field against Zenodo's API rather than taken on
+  trust: `dataset` type, `cc-by-4.0`, open access, ORCID and affiliation attached, all eight
+  keywords, all three related identifiers, and a description containing the season window, the
+  window caveat, the acknowledgment pointer, the funding, and the AI-assistance paragraph.
+- **Sections/Files Affected**: `README.md` (a DOI badge under the title; the dataset citation now
+  gives the concept DOI with the version DOI named as the alternative), `CITATION.cff` (`doi`,
+  `version`, `date-released`), `tools/check_references.py` (see below).
+- **Nature of Contribution**: Documentation and a guard extension.
+- **Human Review Status**: Pending review.
+- **The DARNtids placeholder is deliberately left bracketed.** The second `[version and DOI to be
+  assigned]` in the README belongs to `DARNtids`, which has no Zenodo archive yet. Filling it with
+  this dataset's DOI would misattribute the software citation (W13, W12).
+- **The guard caught the backfill**, which is the behaviour it was written for: adding the two new
+  DOIs made `check_references.py` fail with "unlisted DOI" until they were declared. Rather than
+  exempt them, the script now knows them:
+  - a new `SELF_DOIS` table naming this dataset's concept and version DOIs, checked against
+    **Zenodo's** API rather than Crossref, since Zenodo mints them and Crossref does not index them;
+  - any *other* `10.5281/zenodo.*` DOI appearing in a tracked file now fails, so a typo sends nobody
+    to a different record;
+  - the DOI scanner now strips a trailing `.svg`, `.png` or `.json`, because the badge URL embeds
+    the DOI followed by an extension and the raw regex swallowed it.
+- **Verification**: `[2c]` confirms both self-DOIs against record 22697960 and prints the record
+  title. The new check was then tested by breaking it on purpose: typing the concept DOI as
+  `...22697950` in the README is caught and exits 1. A clean run passes all four groups, and the
+  eight article DOIs still verify against Crossref.
+- **Git Hash**: [to be added after commit]
