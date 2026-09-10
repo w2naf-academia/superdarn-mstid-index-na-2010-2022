@@ -655,4 +655,4 @@ it, each of which is listed line by line.
   Typing one award number wrong is caught and exits 1; reintroducing a `grants` entry in the old
   form is caught and exits 1. A clean run passes, and the eight article DOIs still verify against
   Crossref.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 1ae8202
