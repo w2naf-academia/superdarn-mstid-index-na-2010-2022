@@ -565,3 +565,51 @@ it, each of which is listed line by line.
   survives anywhere in `README.md`; the block still covers all ten radars; and
   `tools/check_references.py --offline` still passes, confirming the edit did not disturb a DOI.
 - **Git Hash**: 02c6c6e
+
+## [2026-09-10 20:55 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
+- **Session Purpose**: Pre-flight checks ahead of the Zenodo release. NAF: *"I think
+  [the repository] is about ready for archiving to zenodo. I enabled the Github-Zenodo integration
+  for this, so I think when we do a release it should automatically get a DOI. Can you do pre-flight
+  checks and help me do the release?"*
+- **Sections/Files Affected**: `.zenodo.json`, the record description. No other file changed.
+- **Nature of Contribution**: Verification, and one metadata fix the verification found.
+- **Human Review Status**: Pending review.
+- **What the pre-flight confirmed**, each checked rather than recalled:
+  - Working tree clean, `HEAD` equal to `origin/main` at `cbb00db`, nothing unpushed, no tags yet
+    and no prior releases, so this will be the first.
+  - **The Zenodo webhook is active** (`gh api repos/.../hooks`) and subscribed to the `release`
+    event only. This matters for how the release is cut: pushing a bare git tag will **not** reach
+    Zenodo. A GitHub *release* has to be created.
+  - **No `.github/workflows` directory exists**, so a tag or release triggers nothing except the
+    Zenodo webhook. R3's specific hazard, a tag firing a trusted-publishing job, does not apply here.
+  - `tools/check_references.py` passes online: all eight article DOIs agree with Crossref and both
+    funder ids resolve.
+  - `.zenodo.json` is valid JSON with every field Zenodo consumes; its license id `cc-by-4.0` was
+    verified against Zenodo's own licenses vocabulary as SPDX-scheme "Creative Commons Attribution
+    4.0 International"; the HTML description is tag-balanced. `CITATION.cff` is valid YAML at
+    `cff-version 1.2.0`.
+  - `LICENSE` is byte-identical to the GPL-3.0 text in `DARNtids` and the paper repo (md5
+    `1ebbd3e34237af26da5dc08a4e440464`).
+  - No secrets or build artifacts among the 289 tracked files, by filename pattern and by content
+    grep. 240 data files present as expected. The tarball Zenodo will fetch is **30.3 MB**, far
+    inside its per-record limit.
+  - Placeholders: only the two DOI placeholders remain, which is correct until the DOI exists (W13).
+  - README carries all seven required sections, and the acknowledgment block covers **10/10** radars.
+  - **Reproducibility tested against what Zenodo will archive**, not against the working tree: a
+    fresh `git clone` of `origin/main` was run end to end over all twelve seasons. Exit 0, **zero
+    deprecation warnings**, all 14 PNGs pixel-identical to the committed copies, CSV comment headers
+    identical apart from the generation timestamp, and CSV numbers agreeing to 1.776e-15, the same
+    run-to-run `numpy` accumulation noise measured on 2026-09-01 and shown then to be independent of
+    any code change.
+- **The one gap found, and fixed**: the `.zenodo.json` description never stated the season window,
+  and gave no pointer to the required SuperDARN acknowledgment. That description is the abstract a
+  reader meets on the Zenodo record, often without opening the README, and the season window is the
+  bundle's most consequential caveat: because the reference spectrum is the per-radar, per-season
+  mean, a differently windowed export is a different set of numbers. Three additions: the 1 November
+  through 30 April bounds in the opening paragraph; a new paragraph stating that the window is part
+  of the index definition and that values from differently windowed exports should not be mixed; and
+  a sentence in the licensing paragraph saying any publication must carry the acknowledgment
+  reproduced in the README. Revalidated as JSON with balanced HTML afterward.
+- **Git Hash**: [to be added after commit]
