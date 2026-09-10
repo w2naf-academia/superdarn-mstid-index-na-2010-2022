@@ -81,19 +81,20 @@ EXPECTED = {
         volume="103", issue="A9", page="20797-20811", note=""),
 }
 
-# Crossref Funder Registry ids, checked against the funders endpoint instead.
-EXPECTED_FUNDERS = {
-    "10.13039/100000104": "National Aeronautics and Space Administration",
-    "10.13039/100000001": "National Science Foundation",
-}
-
-# .zenodo.json states grants in Zenodo's "<funder DOI>::<award number>" form. The award
-# numbers are checked as literals, because a typo in one is a funder-reporting error that
-# nothing else in this repository would catch (A6).
-EXPECTED_GRANTS = {
-    "10.13039/100000104::80NSSC23K0848",
-    "10.13039/100000104::80NSSC21K1772",
-    "10.13039/100000001::AGS-2045755",
+# Award numbers funding this work, checked as literals in .zenodo.json. A typo in one is a
+# funder-reporting error (A6) that nothing else in this repository would catch.
+#
+# These live in the record description rather than Zenodo's structured `grants` field. That
+# field only accepts awards present in Zenodo's OpenAIRE-derived grant database, which covers
+# the European Commission and a limited set of national funders; NASA is not in it. Supplying
+# NASA's funder DOI there failed the v1.0.0 release with
+# `{"errors": "Invalid value 10.13039/100000104."}`. Structured funding metadata can be added
+# through the Zenodo web form after a record exists, where it is picked from their vocabulary
+# rather than asserted blind.
+EXPECTED_AWARDS = {
+    "80NSSC23K0848",
+    "80NSSC21K1772",
+    "AGS-2045755",
 }
 
 DOI_RE = re.compile(r"10\.\d{4,9}/[^\s)>\"',;]+")
@@ -126,16 +127,15 @@ def main():
     args = ap.parse_args()
 
     found = scan()
-    articles = {d: f for d, f in found.items() if not d.startswith("10.13039/")}
-    grants = {d: f for d, f in found.items() if "::" in d}
-    funders = {d: f for d, f in found.items()
-               if d.startswith("10.13039/") and "::" not in d}
-    articles = {d: f for d, f in articles.items() if "::" not in d}
+    articles = {d: f for d, f in found.items()
+                if not d.startswith("10.13039/") and "::" not in d}
+    funders = {d: f for d, f in found.items() if d.startswith("10.13039/")}
+    zenodo_text = (REPO / ".zenodo.json").read_text(encoding="utf-8")
     readme = (REPO / "README.md").read_text(encoding="utf-8")
     failures = []
 
-    print(f"Scanned {len(SCANNED)} files; found {len(articles)} article DOIs, "
-          f"{len(funders)} bare funder ids and {len(grants)} funder::award grants.\n")
+    print(f"Scanned {len(SCANNED)} files; found {len(articles)} article DOIs "
+          f"and {len(funders)} funder ids.\n")
 
     # 1. Nothing unverified may appear in the files.
     print("[1] every DOI in the files is listed in EXPECTED")
@@ -146,20 +146,8 @@ def main():
             print(f"    FAIL  {doi}  not in EXPECTED; add it with its verified metadata")
             failures.append(f"unlisted DOI {doi}")
     for doi in sorted(funders):
-        if doi in EXPECTED_FUNDERS:
-            print(f"    ok    {doi}  (funder)")
-        else:
-            print(f"    FAIL  {doi}  unlisted funder id")
-            failures.append(f"unlisted funder {doi}")
-    for grant in sorted(grants):
-        funder = grant.split("::", 1)[0]
-        if grant in EXPECTED_GRANTS and funder in EXPECTED_FUNDERS:
-            print(f"    ok    {grant}  (grant)")
-        else:
-            why = ("award not in EXPECTED_GRANTS" if funder in EXPECTED_FUNDERS
-                   else "unlisted funder prefix")
-            print(f"    FAIL  {grant}  {why}")
-            failures.append(f"grant {grant}: {why}")
+        print(f"    FAIL  {doi}  funder DOI in a file; Zenodo rejects these in `grants`")
+        failures.append(f"unexpected funder DOI {doi}")
 
     # 2. The table may not go stale.
     print("\n[2] every EXPECTED DOI still appears in README.md")
@@ -169,6 +157,15 @@ def main():
         else:
             print(f"    FAIL  {doi}  in EXPECTED but absent from README.md")
             failures.append(f"stale EXPECTED entry {doi}")
+
+    # 2b. The award numbers must still be stated in the Zenodo record description.
+    print("\n[2b] award numbers present in .zenodo.json")
+    for award in sorted(EXPECTED_AWARDS):
+        if award in zenodo_text:
+            print(f"    ok    {award}")
+        else:
+            print(f"    FAIL  {award}  not stated in .zenodo.json")
+            failures.append(f"missing award number {award}")
 
     # 3. Crossref must agree with the table.
     if args.offline:
@@ -204,20 +201,6 @@ def main():
             else:
                 print(f"    ok    {doi}  {got['author']} {got['year']}, "
                       f"{got['journal']} {got['volume']}({got['issue']})")
-
-        print("\n[4] funder ids resolve to the expected organizations")
-        for doi, want in sorted(EXPECTED_FUNDERS.items()):
-            try:
-                name = crossref("funders", doi.split("/", 1)[1]).get("name")
-            except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as err:
-                print(f"    FAIL  {doi}  lookup failed: {err}")
-                failures.append(f"funder lookup failed {doi}")
-                continue
-            if name == want:
-                print(f"    ok    {doi}  {name}")
-            else:
-                print(f"    FAIL  {doi}  registry {name!r} != expected {want!r}")
-                failures.append(f"funder mismatch {doi}")
 
     print()
     if failures:

@@ -613,3 +613,46 @@ it, each of which is listed line by line.
   a sentence in the licensing paragraph saying any publication must carry the acknowledgment
   reproduced in the README. Revalidated as JSON with balanced HTML afterward.
 - **Git Hash**: 158bdd7
+
+## [2026-09-10 21:10 UTC]
+
+- **Tool**: Claude (Anthropic), `claude-opus-5[1m]`, via Claude Code
+- **Session Purpose**: The `v1.0.0` Zenodo release failed. Diagnose and fix.
+- **Sections/Files Affected**: `.zenodo.json` (the `grants` field removed, funding moved into the
+  record description) and `tools/check_references.py` (the funder/grant checks replaced).
+- **Nature of Contribution**: Bug fix to release metadata the assistant had written, plus a guard
+  against the same failure.
+- **Human Review Status**: NAF diagnosed by supplying Zenodo's error page; the fix is pending his
+  review.
+- **The failure**: Zenodo accepted the webhook (HTTP 202) and then failed while building the record,
+  reporting `{"errors": "Invalid value 10.13039/100000104."}` on its GitHub settings page. No DOI
+  was minted and the release shows as **Failed**, so nothing was archived and nothing is orphaned.
+- **Cause, and it is mine**: `.zenodo.json` carried a `grants` field written on 2026-08-31:
+
+      "grants": [{"id": "10.13039/100000104::80NSSC23K0848"},
+                 {"id": "10.13039/100000104::80NSSC21K1772"},
+                 {"id": "10.13039/100000001::AGS-2045755"}]
+
+  Zenodo's `grants` field accepts only awards present in its OpenAIRE-derived grant database, which
+  covers the European Commission and a limited set of national funders. `10.13039/100000104` is
+  NASA, which is not in it. The NSF entry is also the wrong shape for that field, which expects the
+  bare award number (`2045755`) rather than the program-prefixed `AGS-2045755`. The earlier
+  verification of these identifiers checked them against the **Crossref Funder Registry**, where
+  they are all valid; that was the wrong authority for this field, and validity there does not
+  imply Zenodo will accept them.
+- **The fix**: `grants` removed entirely, and a Funding paragraph added to the record description
+  naming NASA 80NSSC23K0848, NASA 80NSSC21K1772, and NSF AGS-2045755. The award numbers are
+  therefore still disclosed on the Zenodo record (A6) in a form that cannot fail validation.
+  Structured funding metadata can be added later through Zenodo's web form, where awards are picked
+  from their vocabulary instead of asserted blind.
+- **Guard updated so this cannot recur**: `tools/check_references.py` previously validated the
+  `funder DOI::award` strings, which no longer exist, so the check would have gone vacuous. It now
+  (a) verifies the three award numbers appear as literals in `.zenodo.json`, keeping the A6
+  protection, and (b) **fails on any funder DOI appearing in a tracked file**, which is exactly the
+  construct that broke this release. The reason is recorded in a comment above `EXPECTED_AWARDS`,
+  including Zenodo's verbatim error, so a later session does not helpfully reinstate the field.
+- **Verification**: both new checks were tested by breaking the tree on purpose and restoring it.
+  Typing one award number wrong is caught and exits 1; reintroducing a `grants` entry in the old
+  form is caught and exits 1. A clean run passes, and the eight article DOIs still verify against
+  Crossref.
+- **Git Hash**: [to be added after commit]
