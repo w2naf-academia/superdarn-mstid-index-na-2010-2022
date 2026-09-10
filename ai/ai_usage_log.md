@@ -612,4 +612,4 @@ it, each of which is listed line by line.
   of the index definition and that values from differently windowed exports should not be mixed; and
   a sentence in the licensing paragraph saying any publication must carry the acknowledgment
   reproduced in the README. Revalidated as JSON with balanced HTML afterward.
-- **Git Hash**: [to be added after commit]
+- **Git Hash**: 158bdd7
